@@ -12,7 +12,6 @@
 [ext_resource type="Texture2D" uid="uid://c6i5rxomec6ag" path="res://Legacy-Fantasy_-_High_Forest_2.0/Legacy-Fantasy - High Forest 2.3/Mob/Boar/Walk/Walk-Base-Sheet.png" id="10_hve3p"]
 [ext_resource type="Texture2D" uid="uid://b42ulx5swe3lp" path="res://Legacy-Fantasy_-_High_Forest_2.0/Legacy-Fantasy - High Forest 2.3/Mob/Boar/Idle/Idle-Sheet.png" id="11_lc2xo"]
 [ext_resource type="Texture2D" uid="uid://d3asmfcmjc3gn" path="res://Legacy-Fantasy_-_High_Forest_2.0/Legacy-Fantasy - High Forest 2.3/Mob/Boar/Hit-Vanish/Hit-Sheet.png" id="12_215e1"]
-[ext_resource type="Script" uid="uid://7jr02qyk3nrf" path="res://animated_sprite_2d_2.gd" id="13_7sc4i"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fc0e3"]
 texture = ExtResource("2_feb5d")
@@ -2163,6 +2162,4 @@ frame_progress = 0.84340405
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." unique_id=1422278782]
 position = Vector2(113, 617)
 sprite_frames = SubResource("SpriteFrames_r6udh")
-frame = 1
-frame_progress = 0.7586369
-script = ExtResource("13_7sc4i")
+frame_progress = 0.5820442
