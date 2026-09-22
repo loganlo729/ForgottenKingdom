@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://dkxv0w0p8vm6x"]
 
-[ext_resource type="Texture2D" uid="uid://bgbb36ieg1vcl" path="res://Knight 2D Pixel Art/Knight 2D Pixel Art/Sprites/without_outline/IDLE.png" id="1_q3lat"]
+[ext_resource type="Texture2D" uid="uid://bgbb36ieg1vcl" path="res://Assets/Knight 2D Pixel Art/Knight 2D Pixel Art/Sprites/without_outline/IDLE.png" id="1_q3lat"]
 [ext_resource type="Script" uid="uid://dciccwwq06p8r" path="res://Player/player_script.gd" id="1_tok1r"]
-[ext_resource type="Texture2D" uid="uid://db0amxx3ai1my" path="res://Knight 2D Pixel Art/Knight 2D Pixel Art/Sprites/without_outline/WALK.png" id="2_tok1r"]
-[ext_resource type="Texture2D" uid="uid://clvvmebljkugr" path="res://Knight 2D Pixel Art/Knight 2D Pixel Art/Sprites/without_outline/JUMP.png" id="3_ddoul"]
-[ext_resource type="Texture2D" uid="uid://dtuix4r5cvn8e" path="res://Knight 2D Pixel Art/Knight 2D Pixel Art/Sprites/without_outline/RUN.png" id="4_8g4oa"]
+[ext_resource type="Texture2D" uid="uid://db0amxx3ai1my" path="res://Assets/Knight 2D Pixel Art/Knight 2D Pixel Art/Sprites/without_outline/WALK.png" id="2_tok1r"]
+[ext_resource type="Texture2D" uid="uid://clvvmebljkugr" path="res://Assets/Knight 2D Pixel Art/Knight 2D Pixel Art/Sprites/without_outline/JUMP.png" id="3_ddoul"]
+[ext_resource type="Texture2D" uid="uid://dtuix4r5cvn8e" path="res://Assets/Knight 2D Pixel Art/Knight 2D Pixel Art/Sprites/without_outline/RUN.png" id="4_8g4oa"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ddoul"]
 atlas = ExtResource("1_q3lat")
