@@ -1,11 +1,12 @@
 [gd_scene format=3 uid="uid://oej7tu3r8j32"]
 
-[ext_resource type="PackedScene" uid="uid://dkxv0w0p8vm6x" path="res://Player/player.tscn" id="1_1h4ve"]
+[ext_resource type="PackedScene" uid="uid://dkxv0w0p8vm6x" path="res://Player/Player.tscn" id="1_1h4ve"]
 [ext_resource type="Texture2D" uid="uid://chhbox8kbdv81" path="res://Assets/Area1/GothicVania-town-files/PNG/environment/layers/background.png" id="1_u6d72"]
 [ext_resource type="Texture2D" uid="uid://ciplgfx26rteh" path="res://Assets/Area1/GothicVania-town-files/PNG/environment/layers/middleground.png" id="2_j4y2a"]
 [ext_resource type="Texture2D" uid="uid://cvv3jubfxqqmu" path="res://Assets/Area1/GothicVania-town-files/PNG/environment/props/houses.png" id="3_5qot8"]
 [ext_resource type="Texture2D" uid="uid://varkw3lib7fd" path="res://Assets/Area1/ch_02_world_building_foundations/forgotten_forest_example_tileset.png" id="3_6jdmn"]
 [ext_resource type="Texture2D" uid="uid://cdig80e4hmb0w" path="res://Assets/Area1/Legacy-Fantasy_-_High_Forest_2.0/Legacy-Fantasy - High Forest 2.3/Assets/Buildings.png" id="3_lnf62"]
+[ext_resource type="PackedScene" uid="uid://6a3vbrpyab6h" path="res://Enemy/boar.tscn" id="7_j4y2a"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lnf62"]
 texture = ExtResource("3_6jdmn")
@@ -2192,3 +2193,18 @@ layer_0/tile_data = PackedInt32Array(3473411, 65536, 16, 3473412, 131072, 16, 36
 
 [node name="Player" parent="." unique_id=1904947197 instance=ExtResource("1_1h4ve")]
 position = Vector2(344, 728)
+
+[node name="Boar" parent="." unique_id=1556071156 instance=ExtResource("7_j4y2a")]
+position = Vector2(625, 832)
+
+[node name="Boar2" parent="." unique_id=1560071694 instance=ExtResource("7_j4y2a")]
+position = Vector2(703, 832)
+
+[node name="Boar3" parent="." unique_id=2035294296 instance=ExtResource("7_j4y2a")]
+position = Vector2(798, 831)
+
+[node name="Boar4" parent="." unique_id=919681680 instance=ExtResource("7_j4y2a")]
+position = Vector2(885, 832)
+
+[node name="Boar5" parent="." unique_id=876867014 instance=ExtResource("7_j4y2a")]
+position = Vector2(538, 831)

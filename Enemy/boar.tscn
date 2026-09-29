@@ -170,30 +170,31 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0cv4k"]
-size = Vector2(37.5, 30)
+size = Vector2(37.5, 25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bl8mu"]
-size = Vector2(43, 30)
+size = Vector2(43, 24)
 
 [node name="Boar" type="CharacterBody2D" unique_id=1556071156 groups=["Enemies"]]
+collision_layer = 2
 script = ExtResource("1_oheof")
 
 [node name="StateTimer" type="Timer" parent="." unique_id=691318184]
 
 [node name="VisionRay" type="RayCast2D" parent="." unique_id=1689320605]
-target_position = Vector2(-100, 0)
+target_position = Vector2(-304, 1)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=797847751]
 sprite_frames = SubResource("SpriteFrames_4s58p")
 animation = &"windup"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1963942435]
-position = Vector2(0.25, 1)
+position = Vector2(0.25, 3.5)
 shape = SubResource("RectangleShape2D_0cv4k")
 
 [node name="HurtBox" type="Area2D" parent="." unique_id=271932667]
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=2114745959]
-position = Vector2(-0.5, 1)
+position = Vector2(-0.5, 4)
 shape = SubResource("RectangleShape2D_bl8mu")
