@@ -113,6 +113,7 @@ func start_charge_sequence():
 
 func _on_windup_finished():
 	if current_state == State.WINDUP:
+		state_timer.timeout.disconnect(_on_windup_finished)
 		state_timer.timeout.connect(_on_windup_finished)
 		set_state(State.CHARGE)
 
@@ -121,7 +122,12 @@ func take_damage(amount: int, knockback_dir: Vector2):
 	if is_dead: return
 	
 	health -= amount
-	sprite.modulate = Color(1, 0.3, 0.3) # Turn red
+	
+	# Save the original color
+	var original_color = sprite.modulate
+	# Change to the new color (Red)
+	sprite.modulate = Color(1, 0.3, 0.3)
+	
 	velocity = knockback_dir * 100.0 # Launch backwards
 	
 	if health <= 0:
@@ -133,6 +139,10 @@ func take_damage(amount: int, knockback_dir: Vector2):
 		else:
 			# Normal hit stun response for when it's wandering or resting
 			set_state(State.HIT, 0.2) 
+			
+	# Wait for 0.2 seconds and change back to initial color
+	await get_tree().create_timer(0.2).timeout
+	sprite.modulate = original_color
 
 func die():
 	is_dead = true
