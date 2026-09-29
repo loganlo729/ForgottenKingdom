@@ -3522,5 +3522,3 @@ shape = SubResource("RectangleShape2D_dqw1c")
 
 [node name="Boar" parent="." unique_id=1027373665 instance=ExtResource("12_bx0gj")]
 position = Vector2(2210, 462)
-
-[connection signal="health_changed" from="Player" to="CanvasLayer/OnScreenHealth" method="_on_player_health_changed"]

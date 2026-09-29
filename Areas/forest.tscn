@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://oej7tu3r8j32"]
 
-[ext_resource type="PackedScene" uid="uid://dkxv0w0p8vm6x" path="res://Player/Player.tscn" id="1_1h4ve"]
+[ext_resource type="PackedScene" uid="uid://7gib1vy60p14" path="res://Player/Player.tscn" id="1_1h4ve"]
 [ext_resource type="Texture2D" uid="uid://chhbox8kbdv81" path="res://Assets/Area1/GothicVania-town-files/PNG/environment/layers/background.png" id="1_u6d72"]
 [ext_resource type="Texture2D" uid="uid://ciplgfx26rteh" path="res://Assets/Area1/GothicVania-town-files/PNG/environment/layers/middleground.png" id="2_j4y2a"]
 [ext_resource type="Texture2D" uid="uid://cvv3jubfxqqmu" path="res://Assets/Area1/GothicVania-town-files/PNG/environment/props/houses.png" id="3_5qot8"]

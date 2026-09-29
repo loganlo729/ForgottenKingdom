@@ -5,6 +5,7 @@ var max_health = 5
 var player_health = 5
 var is_hit = false
 var hit_stun_time = 0.25
+signal health_changed(player_health)
 
 # SPEED / DASH CONFIG
 const SPEED = 150.0
@@ -50,8 +51,8 @@ var guard_time_left = 0.0
 var guard_cooldown_left = 0.0
 
 func _ready():
-	# Update health label
-	set_health_bar()
+	# Update health via signal
+	health_changed.emit(player_health)
 	
 	# Connect the attack box to detect enemy bodies entering its region
 	if not attack_box.body_entered.is_connected(_on_attack_box_body_entered):
@@ -239,7 +240,7 @@ func take_damage(amount: int, source_position: Vector2):
 	# IF NOT BLOCKED, TAKE DAMAGE
 	player_health -= amount
 	is_hit = true
-	set_health_bar()
+	health_changed.emit(player_health)
 	
 	# Calculate knockback direction away from the source of damage
 	var knockback_dir = Vector2.RIGHT if source_position.x < global_position.x else Vector2.LEFT
@@ -258,8 +259,7 @@ func take_damage(amount: int, source_position: Vector2):
 		# Reload scene on death
 		get_tree().reload_current_scene()
 
-func set_health_bar() -> void:
-	$OnScreenHealth/HealthLabel.text = "Health: %s" % str(player_health)
-	$OnScreenHealth/HealthBar.max_value = max_health
-	$OnScreenHealth/HealthBar.value = player_health
-	
+#func set_health_bar() -> void:
+	#$Camera2D/OnScreenHealth/HealthLabel.text = "Health: %s" % str(player_health)
+	#$Camera2D/OnScreenHealth/HealthBar.max_value = max_health
+	#$Camera2D/OnScreenHealth/HealthBar.value = player_health
