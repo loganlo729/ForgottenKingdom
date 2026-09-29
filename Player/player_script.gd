@@ -1,5 +1,10 @@
 extends CharacterBody2D
 
+# HEALTH
+var player_health = 5
+var is_hit = false
+var hit_stun_time = 0.25
+
 # SPEED / DASH CONFIG
 const SPEED = 150.0
 const RUN_SPEED = 250.0
@@ -23,6 +28,7 @@ const GUARD_COOLDOWN = .5
 @onready var sprite = $AnimatedSprite2D
 @onready var attack_box = $BaseAttackBox 
 
+# DASH VARIABLES
 var is_dashing = false
 var dash_time_left = 0.0
 var dash_cooldown_left = 0.0 
@@ -41,6 +47,22 @@ var jumps_left = 0
 var is_guarding = false
 var guard_time_left = 0.0
 var guard_cooldown_left = 0.0
+
+func _ready():
+	# Connect the attack box to detect enemy bodies entering its region
+	if not attack_box.body_entered.is_connected(_on_attack_box_body_entered):
+		attack_box.body_entered.connect(_on_attack_box_body_entered)
+
+func _on_attack_box_body_entered(body: Node2D):
+	# Verify if the node entered is in our enemy group and handles taking hits
+	if body.is_in_group("Enemies") and body.has_method("take_damage"):
+		# Determine knockback direction relative to player orientation
+		var knockback_direction = Vector2.LEFT if sprite.flip_h else Vector2.RIGHT
+		
+		# Deal 2 damage on the 3rd swing finisher, otherwise deal 1 damage
+		var damage_to_deal = 2 if combo_count == 3 else 1
+		
+		body.take_damage(damage_to_deal, knockback_direction)
 
 func _physics_process(delta):
 	# Reset jump charges and air attack limits after landing
@@ -195,3 +217,38 @@ func _physics_process(delta):
 		sprite.play("idle")
 
 	move_and_slide()
+
+func take_damage(amount: int, source_position: Vector2):
+	if is_hit or is_dashing: 
+		return # Invulnerable during a dash or if already hit
+	
+	# CHECK IF WE BLOCKED IT
+	if is_guarding:
+		# Check if the enemy is in front of where we are facing
+		var enemy_is_left = source_position.x < global_position.x
+		if (sprite.flip_h and enemy_is_left) or (not sprite.flip_h and not enemy_is_left):
+			# Successful block! Play guard animation, reduce knockback, take 0 damage
+			var block_knockback = Vector2.RIGHT if enemy_is_left else Vector2.LEFT
+			velocity = block_knockback * 150.0
+			return
+
+	# IF NOT BLOCKED, TAKE DAMAGE
+	player_health -= amount
+	is_hit = true
+	
+	# Calculate knockback direction away from the source of damage
+	var knockback_dir = Vector2.RIGHT if source_position.x < global_position.x else Vector2.LEFT
+	velocity = knockback_dir * 300.0
+	velocity.y = -150.0 # Small upward pop
+	
+	# Turn the player red momentarily
+	sprite.modulate = Color(1, 0.3, 0.3)
+	
+	# Reset hit state after a brief stun window
+	await get_tree().create_timer(hit_stun_time).timeout
+	is_hit = false
+	sprite.modulate = Color(1, 1, 1)
+	
+	if player_health <= 0:
+		# Reload scene on death
+		get_tree().reload_current_scene()

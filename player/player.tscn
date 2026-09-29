@@ -422,7 +422,8 @@ script = ExtResource("1_tok1r")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=235842596]
 sprite_frames = SubResource("SpriteFrames_bl8mu")
-animation = &"guard"
+animation = &"attack1"
+offset = Vector2(0, -2.185)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1977526777]
 shape = SubResource("CapsuleShape2D_bl8mu")
