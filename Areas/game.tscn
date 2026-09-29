@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bk6smis765iaa" path="res://Assets/Area1/Legacy-Fantasy_-_High_Forest_2.0/Legacy-Fantasy - High Forest 2.3/Assets/Interior-01.png" id="6_q7iy4"]
 [ext_resource type="Texture2D" uid="uid://bp7l0rre57kdb" path="res://Assets/Area1/Legacy-Fantasy_-_High_Forest_2.0/Legacy-Fantasy - High Forest 2.3/Assets/Hive.png" id="7_7hlwi"]
 [ext_resource type="Texture2D" uid="uid://varkw3lib7fd" path="res://Assets/Area1/ch_02_world_building_foundations/forgotten_forest_example_tileset.png" id="8_1jxmk"]
-[ext_resource type="PackedScene" uid="uid://dkxv0w0p8vm6x" path="res://Player/Player.tscn" id="9_qlc82"]
+[ext_resource type="PackedScene" uid="uid://dkxv0w0p8vm6x" path="res://Player/player.tscn" id="9_qlc82"]
 [ext_resource type="Texture2D" uid="uid://cs53ag0aj5103" path="res://Assets/Undead executioner/Undead executioner puppet/png/summonAppear.png" id="10_bsrvu"]
 [ext_resource type="PackedScene" uid="uid://6a3vbrpyab6h" path="res://Enemy/boar.tscn" id="12_bx0gj"]
 [ext_resource type="Script" uid="uid://cw075rjamqtc1" path="res://Areas/forest_drop.gd" id="14_t8ain"]
