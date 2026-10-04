@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://varkw3lib7fd" path="res://Assets/Area1/ch_02_world_building_foundations/forgotten_forest_example_tileset.png" id="3_6jdmn"]
 [ext_resource type="Texture2D" uid="uid://cdig80e4hmb0w" path="res://Assets/Area1/Legacy-Fantasy_-_High_Forest_2.0/Legacy-Fantasy - High Forest 2.3/Assets/Buildings.png" id="3_lnf62"]
 [ext_resource type="Texture2D" uid="uid://bk6smis765iaa" path="res://Assets/Area1/Legacy-Fantasy_-_High_Forest_2.0/Legacy-Fantasy - High Forest 2.3/Assets/Interior-01.png" id="5_j4y2a"]
+[ext_resource type="Script" uid="uid://dnc4vnffotvcn" path="res://Areas/door.gd" id="8_5qot8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lnf62"]
 texture = ExtResource("3_6jdmn")
@@ -2396,6 +2397,7 @@ sources/2 = SubResource("TileSetAtlasSource_u6d72")
 sources/1 = SubResource("TileSetAtlasSource_5qot8")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7ahkn"]
+size = Vector2(32, 56)
 
 [node name="Forest" type="Node2D" unique_id=97333381]
 
@@ -2451,6 +2453,8 @@ layer_0/tile_data = PackedInt32Array(3473411, 65536, 16, 3473412, 131072, 16, 36
 position = Vector2(275, 735)
 
 [node name="Door" type="Area2D" parent="." unique_id=925281358]
+script = ExtResource("8_5qot8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door" unique_id=1287707978]
+position = Vector2(1832, 820)
 shape = SubResource("RectangleShape2D_7ahkn")
