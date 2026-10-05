@@ -1,17 +1,18 @@
 [gd_scene format=3 uid="uid://cxphy3qh6nv1n"]
 
-[ext_resource type="Texture2D" uid="uid://dhgutft4ic0w4" path="res://Assets/Legacy-Fantasy_-_High_Forest_2.0/Legacy-Fantasy - High Forest 2.3/Background/Background.png" id="1_e2o6t"]
+[ext_resource type="PackedScene" uid="uid://b6py7x4axydfi" path="res://UI/on_screen_health.tscn" id="1_215e1"]
+[ext_resource type="Texture2D" uid="uid://dhgutft4ic0w4" path="res://Assets/Area1/Legacy-Fantasy_-_High_Forest_2.0/Legacy-Fantasy - High Forest 2.3/Background/Background.png" id="1_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://dkxv0w0p8vm6x" path="res://Player/player.tscn" id="1_j5wjh"]
-[ext_resource type="Texture2D" uid="uid://c40ohuyolh7gf" path="res://Assets/Legacy-Fantasy_-_High_Forest_2.0/Legacy-Fantasy - High Forest 2.3/Assets/Tiles.png" id="2_feb5d"]
-[ext_resource type="Texture2D" uid="uid://cdig80e4hmb0w" path="res://Assets/Legacy-Fantasy_-_High_Forest_2.0/Legacy-Fantasy - High Forest 2.3/Assets/Buildings.png" id="3_eow3j"]
-[ext_resource type="Texture2D" uid="uid://7lb2lmokovjn" path="res://Assets/Legacy-Fantasy_-_High_Forest_2.0/Legacy-Fantasy - High Forest 2.3/Assets/Tree-Assets.png" id="4_j5wjh"]
-[ext_resource type="Texture2D" uid="uid://bk5lfqr76ejov" path="res://Assets/Legacy-Fantasy_-_High_Forest_2.0/Legacy-Fantasy - High Forest 2.3/Assets/Props-Rocks.png" id="5_vef74"]
-[ext_resource type="Texture2D" uid="uid://bk6smis765iaa" path="res://Assets/Legacy-Fantasy_-_High_Forest_2.0/Legacy-Fantasy - High Forest 2.3/Assets/Interior-01.png" id="6_hve3p"]
-[ext_resource type="Texture2D" uid="uid://bp7l0rre57kdb" path="res://Assets/Legacy-Fantasy_-_High_Forest_2.0/Legacy-Fantasy - High Forest 2.3/Assets/Hive.png" id="7_mfdv2"]
+[ext_resource type="Texture2D" uid="uid://c40ohuyolh7gf" path="res://Assets/Area1/Legacy-Fantasy_-_High_Forest_2.0/Legacy-Fantasy - High Forest 2.3/Assets/Tiles.png" id="2_feb5d"]
+[ext_resource type="Texture2D" uid="uid://cdig80e4hmb0w" path="res://Assets/Area1/Legacy-Fantasy_-_High_Forest_2.0/Legacy-Fantasy - High Forest 2.3/Assets/Buildings.png" id="3_eow3j"]
+[ext_resource type="Texture2D" uid="uid://7lb2lmokovjn" path="res://Assets/Area1/Legacy-Fantasy_-_High_Forest_2.0/Legacy-Fantasy - High Forest 2.3/Assets/Tree-Assets.png" id="4_j5wjh"]
+[ext_resource type="Texture2D" uid="uid://bk5lfqr76ejov" path="res://Assets/Area1/Legacy-Fantasy_-_High_Forest_2.0/Legacy-Fantasy - High Forest 2.3/Assets/Props-Rocks.png" id="5_vef74"]
+[ext_resource type="Texture2D" uid="uid://bk6smis765iaa" path="res://Assets/Area1/Legacy-Fantasy_-_High_Forest_2.0/Legacy-Fantasy - High Forest 2.3/Assets/Interior-01.png" id="6_hve3p"]
+[ext_resource type="Texture2D" uid="uid://bp7l0rre57kdb" path="res://Assets/Area1/Legacy-Fantasy_-_High_Forest_2.0/Legacy-Fantasy - High Forest 2.3/Assets/Hive.png" id="7_mfdv2"]
 [ext_resource type="Texture2D" uid="uid://cs53ag0aj5103" path="res://Assets/Undead executioner/Undead executioner puppet/png/summonAppear.png" id="9_vef74"]
-[ext_resource type="Texture2D" uid="uid://c6i5rxomec6ag" path="res://Assets/Legacy-Fantasy_-_High_Forest_2.0/Legacy-Fantasy - High Forest 2.3/Mob/Boar/Walk/Walk-Base-Sheet.png" id="10_hve3p"]
-[ext_resource type="Texture2D" uid="uid://b42ulx5swe3lp" path="res://Assets/Legacy-Fantasy_-_High_Forest_2.0/Legacy-Fantasy - High Forest 2.3/Mob/Boar/Idle/Idle-Sheet.png" id="11_lc2xo"]
-[ext_resource type="Texture2D" uid="uid://d3asmfcmjc3gn" path="res://Assets/Legacy-Fantasy_-_High_Forest_2.0/Legacy-Fantasy - High Forest 2.3/Mob/Boar/Hit-Vanish/Hit-Sheet.png" id="12_215e1"]
+[ext_resource type="Texture2D" uid="uid://c6i5rxomec6ag" path="res://Assets/Area1/Legacy-Fantasy_-_High_Forest_2.0/Legacy-Fantasy - High Forest 2.3/Mob/Boar/Walk/Walk-Base-Sheet.png" id="10_hve3p"]
+[ext_resource type="Texture2D" uid="uid://b42ulx5swe3lp" path="res://Assets/Area1/Legacy-Fantasy_-_High_Forest_2.0/Legacy-Fantasy - High Forest 2.3/Mob/Boar/Idle/Idle-Sheet.png" id="11_lc2xo"]
+[ext_resource type="Texture2D" uid="uid://d3asmfcmjc3gn" path="res://Assets/Area1/Legacy-Fantasy_-_High_Forest_2.0/Legacy-Fantasy - High Forest 2.3/Mob/Boar/Hit-Vanish/Hit-Sheet.png" id="12_215e1"]
 [ext_resource type="Script" uid="uid://7jr02qyk3nrf" path="res://animated_sprite_2d_2.gd" id="13_7sc4i"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fc0e3"]
@@ -2098,6 +2099,14 @@ animations = [{
 [node name="GAME" type="Node2D" unique_id=615309498]
 position = Vector2(-5, 2)
 
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1954508331]
+
+[node name="OnScreenHealth" parent="CanvasLayer" unique_id=1651802837 instance=ExtResource("1_215e1")]
+offset_left = 205.0
+offset_top = 423.0
+offset_right = -497.0
+offset_bottom = 30.0
+
 [node name="TextureRect" type="TextureRect" parent="." unique_id=106890322]
 anchors_preset = 15
 anchor_right = 1.0
@@ -2119,10 +2128,6 @@ layer_0/tile_data = PackedInt32Array(262140, 196608, 1, 262141, 65536, 1, 262142
 [node name="Player" parent="." unique_id=1735426342 instance=ExtResource("1_j5wjh")]
 position = Vector2(459, 573)
 floor_max_angle = 1.0524335
-
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1954508331]
-layer = -1
-visible = false
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1509123270]
 visible = false

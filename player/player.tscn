@@ -2,7 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://bgbb36ieg1vcl" path="res://Assets/Knight 2D Pixel Art/Knight 2D Pixel Art/Sprites/without_outline/IDLE.png" id="1_q3lat"]
 [ext_resource type="Script" uid="uid://dciccwwq06p8r" path="res://Player/player_script.gd" id="1_tok1r"]
-[ext_resource type="PackedScene" uid="uid://b6py7x4axydfi" path="res://UI/on_screen_health.tscn" id="2_0j2ni"]
 [ext_resource type="Texture2D" uid="uid://sx4df3ivlx71" path="res://Assets/Knight 2D Pixel Art/Knight 2D Pixel Art/Sprites/without_outline/ATTACK 1.png" id="2_6ysni"]
 [ext_resource type="Texture2D" uid="uid://db0amxx3ai1my" path="res://Assets/Knight 2D Pixel Art/Knight 2D Pixel Art/Sprites/without_outline/WALK.png" id="2_tok1r"]
 [ext_resource type="Texture2D" uid="uid://clvvmebljkugr" path="res://Assets/Knight 2D Pixel Art/Knight 2D Pixel Art/Sprites/without_outline/JUMP.png" id="3_ddoul"]
@@ -420,12 +419,6 @@ size = Vector2(20, 34)
 
 [node name="Player" type="CharacterBody2D" unique_id=1904947197 groups=["Player"]]
 script = ExtResource("1_tok1r")
-
-[node name="OnScreenHealth" parent="." unique_id=1651802837 instance=ExtResource("2_0j2ni")]
-offset_left = -255.0
-offset_top = -153.0
-offset_right = -255.0
-offset_bottom = -153.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=235842596]
 sprite_frames = SubResource("SpriteFrames_bl8mu")

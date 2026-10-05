@@ -103,8 +103,10 @@ func update_facing(dir: int):
 func check_for_player():
 	if vision_ray.is_colliding():
 		var collider = vision_ray.get_collider()
+
 		if collider and collider.name == "Player":
-			start_charge_sequence()
+			if current_state == State.IDLE or current_state == State.WANDER:
+				start_charge_sequence()
 
 func start_charge_sequence():
 	set_state(State.WINDUP, 0.6)
@@ -113,6 +115,7 @@ func start_charge_sequence():
 
 func _on_windup_finished():
 	if current_state == State.WINDUP:
+		
 		state_timer.timeout.connect(_on_windup_finished)
 		set_state(State.CHARGE)
 

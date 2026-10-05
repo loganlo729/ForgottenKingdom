@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://oej7tu3r8j32"]
 
 [ext_resource type="PackedScene" uid="uid://dkxv0w0p8vm6x" path="res://Player/player.tscn" id="1_1h4ve"]
+[ext_resource type="PackedScene" uid="uid://b6py7x4axydfi" path="res://UI/on_screen_health.tscn" id="1_af0ii"]
 [ext_resource type="Texture2D" uid="uid://chhbox8kbdv81" path="res://Assets/Area1/GothicVania-town-files/PNG/environment/layers/background.png" id="1_u6d72"]
 [ext_resource type="Texture2D" uid="uid://ciplgfx26rteh" path="res://Assets/Area1/GothicVania-town-files/PNG/environment/layers/middleground.png" id="2_j4y2a"]
 [ext_resource type="Texture2D" uid="uid://cvv3jubfxqqmu" path="res://Assets/Area1/GothicVania-town-files/PNG/environment/props/houses.png" id="3_5qot8"]
@@ -2400,6 +2401,14 @@ sources/1 = SubResource("TileSetAtlasSource_5qot8")
 size = Vector2(32, 56)
 
 [node name="Forest" type="Node2D" unique_id=97333381]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2068661232]
+
+[node name="OnScreenHealth" parent="CanvasLayer" unique_id=1651802837 instance=ExtResource("1_af0ii")]
+offset_left = -16.0
+offset_top = -19.0
+offset_right = -16.0
+offset_bottom = -19.0
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=1490160020]
 

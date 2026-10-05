@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://b5pmccqft20sq"]
 
 [ext_resource type="PackedScene" uid="uid://dkxv0w0p8vm6x" path="res://Player/player.tscn" id="1_6j10w"]
+[ext_resource type="PackedScene" uid="uid://b6py7x4axydfi" path="res://UI/on_screen_health.tscn" id="1_fxxpr"]
 [ext_resource type="Texture2D" uid="uid://varkw3lib7fd" path="res://Assets/Area1/ch_02_world_building_foundations/forgotten_forest_example_tileset.png" id="1_tbo14"]
 [ext_resource type="Texture2D" uid="uid://bk6smis765iaa" path="res://Assets/Area1/Legacy-Fantasy_-_High_Forest_2.0/Legacy-Fantasy - High Forest 2.3/Assets/Interior-01.png" id="2_xkpld"]
 [ext_resource type="PackedScene" uid="uid://cw1h38qxj14x4" path="res://chest/chest.tscn" id="4_xkpld"]
@@ -3631,6 +3632,14 @@ sources/0 = SubResource("TileSetAtlasSource_tbo14")
 sources/1 = SubResource("TileSetAtlasSource_xkpld")
 
 [node name="Church" type="Node2D" unique_id=904408935]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1252585572]
+
+[node name="OnScreenHealth" parent="CanvasLayer" unique_id=1651802837 instance=ExtResource("1_fxxpr")]
+offset_left = -15.0
+offset_top = -20.0
+offset_right = -657.0
+offset_bottom = -385.0
 
 [node name="TileMap" type="TileMap" parent="." unique_id=1572264405]
 tile_set = SubResource("TileSet_dqw1c")
