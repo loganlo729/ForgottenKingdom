@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://b6py7x4axydfi"]
+
+[ext_resource type="Script" uid="uid://dfh2gho5rvnet" path="res://UI/on_screen_health.gd" id="1_f6vxx"]
+
+[node name="OnScreenHealth" type="Control" unique_id=1651802837]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_f6vxx")
+
+[node name="HealthBar" type="ProgressBar" parent="." unique_id=1588460186]
+layout_mode = 0
+offset_left = 38.0
+offset_top = 42.0
+offset_right = 223.0
+offset_bottom = 76.0
+max_value = 5.0
+show_percentage = false
+
+[node name="HealthLabel" type="Label" parent="." unique_id=377624605]
+layout_mode = 0
+offset_left = 95.0
+offset_top = 48.0
+offset_right = 165.0
+offset_bottom = 71.0
+text = "Health: 5"
