@@ -9,9 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://bp7l0rre57kdb" path="res://Assets/Area1/Legacy-Fantasy_-_High_Forest_2.0/Legacy-Fantasy - High Forest 2.3/Assets/Hive.png" id="7_7hlwi"]
 [ext_resource type="Texture2D" uid="uid://varkw3lib7fd" path="res://Assets/Area1/ch_02_world_building_foundations/forgotten_forest_example_tileset.png" id="8_1jxmk"]
 [ext_resource type="PackedScene" uid="uid://dkxv0w0p8vm6x" path="res://Player/player.tscn" id="9_qlc82"]
-[ext_resource type="Texture2D" uid="uid://cs53ag0aj5103" path="res://Assets/Undead executioner/Undead executioner puppet/png/summonAppear.png" id="10_bsrvu"]
 [ext_resource type="Texture2D" uid="uid://c6i5rxomec6ag" path="res://Assets/Area1/Legacy-Fantasy_-_High_Forest_2.0/Legacy-Fantasy - High Forest 2.3/Mob/Boar/Walk/Walk-Base-Sheet.png" id="11_3rtb5"]
 [ext_resource type="Texture2D" uid="uid://b42ulx5swe3lp" path="res://Assets/Area1/Legacy-Fantasy_-_High_Forest_2.0/Legacy-Fantasy - High Forest 2.3/Mob/Boar/Idle/Idle-Sheet.png" id="12_0q7hv"]
+[ext_resource type="Script" uid="uid://bbkmrdqa54m5v" path="res://Areas/boar.gd" id="12_7g8qh"]
 [ext_resource type="Texture2D" uid="uid://d3asmfcmjc3gn" path="res://Assets/Area1/Legacy-Fantasy_-_High_Forest_2.0/Legacy-Fantasy - High Forest 2.3/Mob/Boar/Hit-Vanish/Hit-Sheet.png" id="13_suni0"]
 [ext_resource type="Script" uid="uid://cw075rjamqtc1" path="res://Areas/forest_drop.gd" id="14_t8ain"]
 
@@ -3417,55 +3417,32 @@ sources/4 = SubResource("TileSetAtlasSource_q7iy4")
 sources/5 = SubResource("TileSetAtlasSource_7hlwi")
 sources/6 = SubResource("TileSetAtlasSource_1jxmk")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_mfdv2"]
-atlas = ExtResource("10_bsrvu")
-region = Rect2(0, 0, 50, 50)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dqw1c"]
+size = Vector2(107, 52)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_iotsf"]
-atlas = ExtResource("10_bsrvu")
-region = Rect2(50, 0, 50, 50)
+[sub_resource type="AtlasTexture" id="AtlasTexture_xa8c5"]
+atlas = ExtResource("13_suni0")
+region = Rect2(0, 0, 48, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lc2xo"]
-atlas = ExtResource("10_bsrvu")
-region = Rect2(100, 0, 50, 50)
+[sub_resource type="AtlasTexture" id="AtlasTexture_5b14r"]
+atlas = ExtResource("13_suni0")
+region = Rect2(48, 0, 48, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_215e1"]
-atlas = ExtResource("10_bsrvu")
-region = Rect2(0, 50, 50, 50)
+[sub_resource type="AtlasTexture" id="AtlasTexture_qhcbd"]
+atlas = ExtResource("12_0q7hv")
+region = Rect2(0, 0, 48, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7sc4i"]
-atlas = ExtResource("10_bsrvu")
-region = Rect2(50, 50, 50, 50)
+[sub_resource type="AtlasTexture" id="AtlasTexture_f1jbl"]
+atlas = ExtResource("12_0q7hv")
+region = Rect2(48, 0, 48, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_80cx4"]
-atlas = ExtResource("10_bsrvu")
-region = Rect2(100, 50, 50, 50)
+[sub_resource type="AtlasTexture" id="AtlasTexture_vaj68"]
+atlas = ExtResource("12_0q7hv")
+region = Rect2(96, 0, 48, 32)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_pb5ah"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mfdv2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_iotsf")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lc2xo")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_215e1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7sc4i")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_80cx4")
-}],
-"loop": 1,
-"name": &"default",
-"speed": 9.0
-}]
+[sub_resource type="AtlasTexture" id="AtlasTexture_i2p71"]
+atlas = ExtResource("12_0q7hv")
+region = Rect2(144, 0, 48, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e8heu"]
 atlas = ExtResource("11_3rtb5")
@@ -3491,53 +3468,17 @@ region = Rect2(48, 0, 48, 32)
 atlas = ExtResource("11_3rtb5")
 region = Rect2(0, 0, 48, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qhcbd"]
-atlas = ExtResource("12_0q7hv")
-region = Rect2(0, 0, 48, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_f1jbl"]
-atlas = ExtResource("12_0q7hv")
-region = Rect2(48, 0, 48, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vaj68"]
-atlas = ExtResource("12_0q7hv")
-region = Rect2(96, 0, 48, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_i2p71"]
-atlas = ExtResource("12_0q7hv")
-region = Rect2(144, 0, 48, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xa8c5"]
-atlas = ExtResource("13_suni0")
-region = Rect2(0, 0, 48, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5b14r"]
-atlas = ExtResource("13_suni0")
-region = Rect2(48, 0, 48, 32)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_r6udh"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_e8heu")
+"texture": SubResource("AtlasTexture_xa8c5")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_rvswv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_boyg6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_e36ub")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hb5m1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_x5p1p")
+"texture": SubResource("AtlasTexture_5b14r")
 }],
 "loop": 1,
-"name": &"default",
+"name": &"death",
 "speed": 5.0
 }, {
 "frames": [{
@@ -3559,18 +3500,32 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_xa8c5")
+"texture": SubResource("AtlasTexture_e8heu")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5b14r")
+"texture": SubResource("AtlasTexture_rvswv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_boyg6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e36ub")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hb5m1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x5p1p")
 }],
 "loop": 1,
-"name": &"new_animation_1",
+"name": &"walk",
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_dqw1c"]
-size = Vector2(107, 52)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pb5ah"]
+size = Vector2(39, 39)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pb5ah"]
 
 [node name="First Ares" type="Node2D" unique_id=615309498]
 position = Vector2(-5, 2)
@@ -3603,18 +3558,6 @@ floor_max_angle = 1.0524335
 layer = -1
 visible = false
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1509123270]
-visible = false
-position = Vector2(83, 594)
-sprite_frames = SubResource("SpriteFrames_pb5ah")
-frame = 4
-frame_progress = 0.84340405
-
-[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." unique_id=1422278782]
-position = Vector2(2302, 472)
-sprite_frames = SubResource("SpriteFrames_r6udh")
-frame_progress = 0.5820442
-
 [node name="ForestDrop" type="Area2D" parent="." unique_id=1734594460]
 position = Vector2(5, 6)
 script = ExtResource("14_t8ain")
@@ -3623,3 +3566,25 @@ next_scene = "uid://oej7tu3r8j32"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ForestDrop" unique_id=2044534503]
 position = Vector2(2496, 536)
 shape = SubResource("RectangleShape2D_dqw1c")
+
+[node name="Boar" type="CharacterBody2D" parent="." unique_id=243473545]
+script = ExtResource("12_7g8qh")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Boar" unique_id=1422278782]
+position = Vector2(2047, 481)
+sprite_frames = SubResource("SpriteFrames_r6udh")
+animation = &"death"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boar" unique_id=527802739]
+position = Vector2(2046.5, 479.5)
+shape = SubResource("RectangleShape2D_pb5ah")
+
+[node name="DetectionArea" type="Area2D" parent="Boar/CollisionShape2D" unique_id=1881595868]
+position = Vector2(-2040.5, -468.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boar/CollisionShape2D/DetectionArea" unique_id=443169590]
+position = Vector2(2042.0001, 464)
+scale = Vector2(3.8400197, 2.8399901)
+shape = SubResource("CircleShape2D_pb5ah")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=1198836594]
