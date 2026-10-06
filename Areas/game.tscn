@@ -3563,7 +3563,7 @@ layer_0/tile_data = PackedInt32Array(262140, 196608, 1, 262141, 65536, 1, 262142
 position = Vector2(1773, 470)
 floor_max_angle = 1.0524335
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1954508331]
+[node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=1954508331]
 layer = -1
 visible = false
 
