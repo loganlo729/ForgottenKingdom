@@ -3528,6 +3528,10 @@ size = Vector2(39, 39)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pb5ah"]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ttjii"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ttjii"]
+
 [node name="First Ares" type="Node2D" unique_id=615309498]
 position = Vector2(-5, 2)
 
@@ -3563,7 +3567,7 @@ layer_0/tile_data = PackedInt32Array(262140, 196608, 1, 262141, 65536, 1, 262142
 position = Vector2(1773, 470)
 floor_max_angle = 1.0524335
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1954508331]
+[node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=1954508331]
 layer = -1
 visible = false
 
@@ -3597,4 +3601,12 @@ position = Vector2(2042.0001, 464)
 scale = Vector2(3.8400197, 2.8399901)
 shape = SubResource("CircleShape2D_pb5ah")
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=1198836594]
+[node name="Bee" type="CharacterBody2D" parent="." unique_id=1198836594]
+position = Vector2(22, 14)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bee" unique_id=2002132034]
+position = Vector2(0, 3)
+shape = SubResource("CapsuleShape2D_ttjii")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Bee" unique_id=912655884]
+sprite_frames = SubResource("SpriteFrames_ttjii")
