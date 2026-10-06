@@ -16,7 +16,6 @@ func _on_body_exited(body):
 		player_near = false
 
 func _input(event):
-	if event.is_action_pressed("Interact"):
-		print("E pressed, near: ", player_near)
 	if player_near and event.is_action_pressed("Interact"):
+		Global.from_church = true
 		get_tree().change_scene_to_file("res://Areas/forest.tscn")

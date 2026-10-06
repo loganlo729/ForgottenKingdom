@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="Forgotten Kingdom"
-run/main_scene="uid://cxphy3qh6nv1n"
+run/main_scene="uid://oej7tu3r8j32"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
 GameState="*uid://b2nyhd18ilohf"
+Global="*uid://dwdadr6rfd2fk"
 
 [display]
 
