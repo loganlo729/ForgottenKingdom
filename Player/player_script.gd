@@ -146,18 +146,14 @@ func _physics_process(delta):
 		# Check if the player is allowed to execute an air attack
 		var can_attack = true
 
-		if not is_on_floor() and has_air_attacked and combo_count == 0:
+		if has_air_attacked:
 			can_attack = false
 
 		if can_attack:
 			is_attacking = true
 			attack_time_left = ATTACK_DURATION
 			attack_box.monitoring = true
-
-			# AIR ATTACK FREEZE
-			if not is_on_floor():
-				velocity.y = 0
-				has_air_attacked = true
+			
 
 			# Set baseline horizontal momentum for hits 1 and 2
 			velocity.x = 0
@@ -167,13 +163,22 @@ func _physics_process(delta):
 				combo_count = 1
 			elif combo_count == 1:
 				combo_count = 2
-			elif combo_count == 2:
+				if not is_on_floor:
+					has_air_attacked = true
+			elif combo_count == 2 && is_on_floor():
 				combo_count = 3
-
-				var lunge_dir = Vector2.LEFT if sprite.flip_h else Vector2.RIGHT
-				velocity.x = lunge_dir.x * FINISHER_LUNGE_SPEED
+				
+				
+				if not is_on_floor():
+					has_air_attacked = true
+				else:
+					var lunge_dir = Vector2.LEFT if sprite.flip_h else Vector2.RIGHT
+					velocity.x = lunge_dir.x * FINISHER_LUNGE_SPEED
 			else:
 				combo_count = 1
+				
+				if not is_on_floor():
+					has_air_attacked = true
 
 	# Trigger the dash
 	if Input.is_action_just_pressed("run") and not is_dashing and dash_cooldown_left <= 0 and not is_attacking:
