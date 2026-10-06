@@ -20,6 +20,8 @@ const DASH_COOLDOWN = 0.6
 const ATTACK_DURATION = 0.25
 const COMBO_WINDOW = 0.55
 const FINISHER_LUNGE_SPEED = 350.0
+# RANGED CONFIG
+const RANGED_ATTACK_DURATION = 0.10
 
 # JUMP CONFIG
 const MAX_JUMPS = 2
@@ -29,7 +31,9 @@ const GUARD_DURATION = 0.3
 const GUARD_COOLDOWN = 0.5
 
 @onready var sprite = $AnimatedSprite2D
+@onready var bullet_sprite = $AnimatedSprite2D/Bullet
 @onready var attack_box = $BaseAttackBox
+@onready var ranged_attack_box = $RangedAttackBox
 
 # DASH VARIABLES
 var is_dashing = false
@@ -42,6 +46,9 @@ var attack_time_left = 0.0
 var combo_count = 0
 var combo_time_left = 0.0
 var has_air_attacked = false
+# RANGED VARIABLES
+var is_ranged_attacking = false
+var ranged_attack_time_left = 0.0
 
 # JUMP VARIABLES
 var jumps_left = 0
@@ -101,6 +108,14 @@ func _physics_process(delta):
 			attack_box.monitoring = false
 			combo_time_left = COMBO_WINDOW
 
+	# Process active attack duration
+	if is_ranged_attacking:
+		ranged_attack_time_left -= delta
+		if ranged_attack_time_left <= 0:
+			is_ranged_attacking = false
+			ranged_attack_box.monitoring = false
+			ranged_attack_time_left = RANGED_ATTACK_DURATION
+
 	# Process combo reset window
 	if not is_attacking and combo_count > 0:
 		combo_time_left -= delta
@@ -112,6 +127,9 @@ func _physics_process(delta):
 	# Flip the BaseAttackBox position to match where the player looks
 	if direction != 0 and not is_attacking and not is_dashing:
 		attack_box.scale.x = -1 if direction < 0 else 1
+	# Flip the RangedAttackBox position to match where the player looks
+	if direction != 0 and not is_attacking and not is_dashing:
+		ranged_attack_box.scale.x = -1 if direction < 0 else 1
 
 	# HANDLE JUMP & DOUBLE JUMP
 	if Input.is_action_just_pressed("jump") and not is_attacking:
@@ -137,12 +155,12 @@ func _physics_process(delta):
 			guard_cooldown_left -= delta
 
 	# HANDLE GUARD
-	if Input.is_action_pressed("guard") and not is_guarding and guard_cooldown_left <= 0 and not is_dashing and not is_attacking:
+	if Input.is_action_pressed("guard") and not is_guarding and guard_cooldown_left <= 0 and not is_dashing and not is_attacking and not is_ranged_attacking:
 		is_guarding = true
 		guard_time_left = GUARD_DURATION
 
 	# Trigger the combo chain
-	if Input.is_action_just_pressed("attack") and not is_dashing and not is_attacking:
+	if Input.is_action_just_pressed("attack") and not is_dashing and not is_attacking and not is_ranged_attacking:
 		# Check if the player is allowed to execute an air attack
 		var can_attack = true
 
@@ -193,6 +211,11 @@ func _physics_process(delta):
 
 		velocity.x = forward_dir.x * LAUNCH_SPEED
 
+	if Input.is_action_just_pressed("ranged_attack") and not is_dashing and not is_attacking and not is_ranged_attacking:
+		is_ranged_attacking = true
+		ranged_attack_time_left = RANGED_ATTACK_DURATION
+		ranged_attack_box.monitoring = true
+
 	# MOVEMENT LOGIC
 	if is_dashing:
 		pass
@@ -213,8 +236,13 @@ func _physics_process(delta):
 
 			if direction < 0:
 				sprite.flip_h = true
+				bullet_sprite.flip_h = true
+				bullet_sprite.position.x = -62
 			else:
 				sprite.flip_h = false
+				bullet_sprite.flip_h = false
+				bullet_sprite.position.x = 62
+				
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 
@@ -234,6 +262,9 @@ func _physics_process(delta):
 	else:
 		sprite.play("idle")
 
+	if is_ranged_attacking:
+		bullet_sprite.play("bullet")
+		
 	move_and_slide()
 
 
