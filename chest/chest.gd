@@ -25,6 +25,8 @@ func _input(event):
 		print("E pressed, near: ", player_near, " opened: ", opened)
 	if player_near and not opened and event.is_action_pressed("Interact"):
 		opened = true
+		GameState.has_key = true
+		print("key given")
 		print("playing open")
 		sprite.play("default")
 		await sprite.animation_finished

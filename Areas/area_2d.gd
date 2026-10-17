@@ -1,5 +1,7 @@
 extends Area2D
 
+@export_file("*.tscn") var next_scene: String = "res://Areas/forest.tscn"
+
 var player_near := false
 
 func _ready():
@@ -7,7 +9,6 @@ func _ready():
 	body_exited.connect(_on_body_exited)
 
 func _on_body_entered(body):
-	print("entered: ", body.name)
 	if body is CharacterBody2D:
 		player_near = true
 
@@ -18,4 +19,4 @@ func _on_body_exited(body):
 func _input(event):
 	if player_near and event.is_action_pressed("Interact"):
 		Global.from_church = true
-		get_tree().change_scene_to_file("res://Areas/forest.tscn")
+		SceneTransition.change_scene(next_scene)

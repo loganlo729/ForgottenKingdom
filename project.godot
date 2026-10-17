@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 GameState="*uid://b2nyhd18ilohf"
 Global="*uid://dwdadr6rfd2fk"
+SceneTransition="*uid://b7mbu05uwejni"
 
 [display]
 

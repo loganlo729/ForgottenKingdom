@@ -3661,9 +3661,12 @@ position = Vector2(2352, 640)
 [node name="Player" parent="." unique_id=1904947197 instance=ExtResource("1_6j10w")]
 position = Vector2(315, 742)
 
-[node name="Area2D" type="Area2D" parent="." unique_id=934467894]
+[node name="ChurchExit" type="Area2D" parent="." unique_id=934467894]
 script = ExtResource("6_junox")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=864316836]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ChurchExit" unique_id=864316836]
 position = Vector2(244, 727.25)
 shape = SubResource("RectangleShape2D_7ahkn")
+
+[node name="FromTown" type="Marker2D" parent="." unique_id=635215617]
+position = Vector2(272, 752)

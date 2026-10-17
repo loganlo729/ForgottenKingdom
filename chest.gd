@@ -21,6 +21,7 @@ func _on_body_exited(body):
 
 func _input(event):
 	if player_near and event.is_action_pressed("Interact"):
+		print("has_key: ", GameState.has_key)
 		if GameState.has_key:
 			queue_free()
 		else:

@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://cfcsvkpxbod5t"]
+
+[ext_resource type="Script" uid="uid://c042mvgmphico" path="res://Areas/volcano.gd" id="1_hu55t"]
+[ext_resource type="PackedScene" uid="uid://dkxv0w0p8vm6x" path="res://Player/player.tscn" id="1_mcwle"]
+
+[node name="Volcano" type="Node2D" unique_id=18198253]
+script = ExtResource("1_hu55t")
+
+[node name="Player" parent="." unique_id=1904947197 instance=ExtResource("1_mcwle")]
+position = Vector2(88, 96)
+
+[node name="FromCave" type="Marker2D" parent="." unique_id=383032688]
+position = Vector2(88, 120)
