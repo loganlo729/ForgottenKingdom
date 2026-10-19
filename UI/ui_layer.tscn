@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bolgtjw6ucmdr"]
+
+[ext_resource type="PackedScene" uid="uid://b6py7x4axydfi" path="res://UI/on_screen_health.tscn" id="1_jr1lk"]
+
+[node name="UiLayer" type="Node2D" unique_id=886883731]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1695758512]
+
+[node name="OnScreenHealth" parent="CanvasLayer" unique_id=1651802837 instance=ExtResource("1_jr1lk")]

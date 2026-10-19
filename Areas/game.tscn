@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://xlng3v4osv31"]
 
 [ext_resource type="Texture2D" uid="uid://dhgutft4ic0w4" path="res://Assets/Area1/Legacy-Fantasy_-_High_Forest_2.0/Legacy-Fantasy - High Forest 2.3/Background/Background.png" id="1_0cv4k"]
-[ext_resource type="PackedScene" uid="uid://b6py7x4axydfi" path="res://UI/on_screen_health.tscn" id="1_t8ain"]
+[ext_resource type="PackedScene" uid="uid://bolgtjw6ucmdr" path="res://UI/ui_layer.tscn" id="1_7g8qh"]
 [ext_resource type="Texture2D" uid="uid://c40ohuyolh7gf" path="res://Assets/Area1/Legacy-Fantasy_-_High_Forest_2.0/Legacy-Fantasy - High Forest 2.3/Assets/Tiles.png" id="2_t8ain"]
 [ext_resource type="Texture2D" uid="uid://cdig80e4hmb0w" path="res://Assets/Area1/Legacy-Fantasy_-_High_Forest_2.0/Legacy-Fantasy - High Forest 2.3/Assets/Buildings.png" id="3_7g8qh"]
 [ext_resource type="Texture2D" uid="uid://7lb2lmokovjn" path="res://Assets/Area1/Legacy-Fantasy_-_High_Forest_2.0/Legacy-Fantasy - High Forest 2.3/Assets/Tree-Assets.png" id="4_5vuuj"]
@@ -3535,13 +3535,7 @@ size = Vector2(39, 39)
 [node name="First Ares" type="Node2D" unique_id=615309498]
 position = Vector2(-5, 2)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1963090347]
-
-[node name="OnScreenHealth" parent="CanvasLayer" unique_id=1651802837 instance=ExtResource("1_t8ain")]
-offset_left = -15.0
-offset_top = 2.0
-offset_right = -5.0
-offset_bottom = 2.0
+[node name="UiLayer" parent="." unique_id=886883731 instance=ExtResource("1_7g8qh")]
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=106890322 groups=["Player"]]
 anchors_preset = 15
