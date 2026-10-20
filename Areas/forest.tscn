@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://oej7tu3r8j32"]
 
 [ext_resource type="PackedScene" uid="uid://dkxv0w0p8vm6x" path="res://Player/player.tscn" id="1_1h4ve"]
-[ext_resource type="Script" uid="uid://dd8i0efhwfan" path="res://Areas/forest.gd" id="1_iti45"]
+[ext_resource type="Script" uid="uid://dd8i0efhwfan" path="res://Scripts/forest.gd" id="1_iti45"]
 [ext_resource type="Texture2D" uid="uid://chhbox8kbdv81" path="res://Assets/Area1/GothicVania-town-files/PNG/environment/layers/background.png" id="1_u6d72"]
 [ext_resource type="Texture2D" uid="uid://ciplgfx26rteh" path="res://Assets/Area1/GothicVania-town-files/PNG/environment/layers/middleground.png" id="2_j4y2a"]
 [ext_resource type="PackedScene" uid="uid://bolgtjw6ucmdr" path="res://UI/ui_layer.tscn" id="2_yblu2"]
@@ -10,8 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cdig80e4hmb0w" path="res://Assets/Area1/Legacy-Fantasy_-_High_Forest_2.0/Legacy-Fantasy - High Forest 2.3/Assets/Buildings.png" id="3_lnf62"]
 [ext_resource type="Texture2D" uid="uid://bk6smis765iaa" path="res://Assets/Area1/Legacy-Fantasy_-_High_Forest_2.0/Legacy-Fantasy - High Forest 2.3/Assets/Interior-01.png" id="5_j4y2a"]
 [ext_resource type="Texture2D" uid="uid://b4coqvg0g0wrm" path="res://Assets/Area1/GothicVania-town-files/PNG/environment/props-sliced/chuch.png" id="6_yblu2"]
-[ext_resource type="Script" uid="uid://dnc4vnffotvcn" path="res://Areas/door.gd" id="8_5qot8"]
-[ext_resource type="Script" uid="uid://c1hrb0ih3rakf" path="res://Areas/door_2.gd" id="11_okxak"]
+[ext_resource type="Script" uid="uid://dnc4vnffotvcn" path="res://Scripts/door.gd" id="8_5qot8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lnf62"]
 texture = ExtResource("3_6jdmn")
@@ -2478,8 +2477,6 @@ position = Vector2(3474, 564)
 shape = SubResource("RectangleShape2D_7ahkn")
 
 [node name="Door2" type="Area2D" parent="." unique_id=1135186079]
-script = ExtResource("11_okxak")
-spawn_name = "FromTown"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door2" unique_id=3983701]
 position = Vector2(3012, 824)

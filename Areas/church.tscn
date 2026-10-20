@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://varkw3lib7fd" path="res://Assets/Area1/ch_02_world_building_foundations/forgotten_forest_example_tileset.png" id="1_tbo14"]
 [ext_resource type="Texture2D" uid="uid://bk6smis765iaa" path="res://Assets/Area1/Legacy-Fantasy_-_High_Forest_2.0/Legacy-Fantasy - High Forest 2.3/Assets/Interior-01.png" id="2_xkpld"]
 [ext_resource type="PackedScene" uid="uid://cw1h38qxj14x4" path="res://chest/chest.tscn" id="4_xkpld"]
-[ext_resource type="Script" uid="uid://brbnpeg8dlaq2" path="res://ChurchExit.gd" id="6_gdfvj"]
+[ext_resource type="Script" uid="uid://brbnpeg8dlaq2" path="res://Scripts/ChurchExit.gd" id="6_gdfvj"]
 [ext_resource type="PackedScene" uid="uid://6a3vbrpyab6h" path="res://Enemy/boar.tscn" id="7_gdfvj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fxxpr"]
@@ -3659,9 +3659,10 @@ position = Vector2(315, 742)
 
 [node name="ChurchExit" type="Area2D" parent="." unique_id=934467894]
 script = ExtResource("6_gdfvj")
+next_scene = "uid://oej7tu3r8j32"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ChurchExit" unique_id=864316836]
-position = Vector2(244, 727.25)
+position = Vector2(239, 717)
 shape = SubResource("RectangleShape2D_7ahkn")
 
 [node name="FromTown" type="Marker2D" parent="." unique_id=635215617]

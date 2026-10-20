@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://btgkyna80pu6a" path="res://Assets/Area1/Assets 1024 Cave/Cave - Platforms.png" id="4_3did2"]
 [ext_resource type="Texture2D" uid="uid://varkw3lib7fd" path="res://Assets/Area1/ch_02_world_building_foundations/forgotten_forest_example_tileset.png" id="5_n2ijp"]
 [ext_resource type="Texture2D" uid="uid://1ftkv0pb1mpt" path="res://Assets/Cave Free/Demo/Tiles.png" id="6_trsk6"]
-[ext_resource type="Script" uid="uid://b1ed8br8d5nfn" path="res://Areas/VolcanoEnter.gd" id="7_3did2"]
+[ext_resource type="Script" uid="uid://b1ed8br8d5nfn" path="res://Scripts/VolcanoEnter.gd" id="7_3did2"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_g5j81"]
 
