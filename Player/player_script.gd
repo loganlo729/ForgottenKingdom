@@ -60,6 +60,7 @@ var guard_cooldown_left = 0.0
 
 
 func _ready():
+	print(player_health)
 	# Send initial health information
 	health_changed.emit(player_health, max_health)
 

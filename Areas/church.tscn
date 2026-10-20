@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bk6smis765iaa" path="res://Assets/Area1/Legacy-Fantasy_-_High_Forest_2.0/Legacy-Fantasy - High Forest 2.3/Assets/Interior-01.png" id="2_xkpld"]
 [ext_resource type="PackedScene" uid="uid://cw1h38qxj14x4" path="res://chest/chest.tscn" id="4_xkpld"]
 [ext_resource type="Script" uid="uid://c6k8w2vjrkf16" path="res://Areas/area_2d.gd" id="6_junox"]
+[ext_resource type="PackedScene" uid="uid://6a3vbrpyab6h" path="res://Enemy/boar.tscn" id="7_gdfvj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fxxpr"]
 texture = ExtResource("1_tbo14")
@@ -3638,6 +3639,7 @@ size = Vector2(38, 78.5)
 [node name="Church" type="Node2D" unique_id=904408935]
 
 [node name="UiLayer" parent="." unique_id=886883731 instance=ExtResource("1_junox")]
+position = Vector2(13, -92)
 
 [node name="TileMap" type="TileMap" parent="." unique_id=1572264405]
 tile_set = SubResource("TileSet_dqw1c")
@@ -3664,3 +3666,6 @@ shape = SubResource("RectangleShape2D_7ahkn")
 
 [node name="FromTown" type="Marker2D" parent="." unique_id=635215617]
 position = Vector2(272, 752)
+
+[node name="Boar" parent="." unique_id=1556071156 instance=ExtResource("7_gdfvj")]
+position = Vector2(584, 734)
