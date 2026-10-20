@@ -3537,7 +3537,7 @@ position = Vector2(-5, 2)
 
 [node name="UiLayer" parent="." unique_id=886883731 instance=ExtResource("1_7g8qh")]
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=106890322 groups=["Player"]]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=106890322]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
