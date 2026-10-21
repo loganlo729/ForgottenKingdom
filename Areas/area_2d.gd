@@ -9,14 +9,14 @@ func _ready():
 	body_exited.connect(_on_body_exited)
 
 func _on_body_entered(body):
-	if body is CharacterBody2D:
+	if body.name == "Player":
 		player_near = true
 
 func _on_body_exited(body):
-	if body is CharacterBody2D:
+	if body.name == "Player":
 		player_near = false
 
-func _input(event):
+func _unhandled_input(event):
 	if player_near and event.is_action_pressed("Interact"):
 		Global.from_church = true
-		SceneTransition.change_scene(next_scene)
+		get_tree().change_scene_to_file(next_scene)

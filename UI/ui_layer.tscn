@@ -1,9 +1,24 @@
 [gd_scene format=3 uid="uid://bolgtjw6ucmdr"]
 
+[ext_resource type="Script" uid="uid://c1grs0n6tef7o" path="res://UI/ui_layer.gd" id="1_e00e5"]
 [ext_resource type="PackedScene" uid="uid://b6py7x4axydfi" path="res://UI/on_screen_health.tscn" id="1_jr1lk"]
+[ext_resource type="Texture2D" uid="uid://bc40piho2ser6" path="res://Assets/key.png" id="2_hbgg0"]
 
-[node name="UiLayer" type="Node2D" unique_id=886883731]
+[node name="UiLayer" type="Node2D" unique_id=886883731 groups=["ui"]]
+script = ExtResource("1_e00e5")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1695758512]
+
+[node name="Key1" type="Sprite2D" parent="CanvasLayer" unique_id=1774634486]
+visible = false
+position = Vector2(69.99999, 104.5)
+scale = Vector2(3.3, 3.3)
+texture = ExtResource("2_hbgg0")
+
+[node name="Key2" type="Sprite2D" parent="CanvasLayer" unique_id=559453592]
+visible = false
+position = Vector2(145, 104.5)
+scale = Vector2(3.3, 3.3)
+texture = ExtResource("2_hbgg0")
 
 [node name="OnScreenHealth" parent="CanvasLayer" unique_id=1651802837 instance=ExtResource("1_jr1lk")]

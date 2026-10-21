@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://xn3h5hhsca2b" path="res://chest/chest.gd" id="1_3eoae"]
 [ext_resource type="Texture2D" uid="uid://b55xun11dcegu" path="res://Assets/Animated Chests/Animated Chests/Chests.png" id="2_08cju"]
+[ext_resource type="Texture2D" uid="uid://bc40piho2ser6" path="res://Assets/key.png" id="3_08cju"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_611wj"]
 atlas = ExtResource("2_08cju")
@@ -96,8 +97,9 @@ frame_progress = 0.005763067
 position = Vector2(-11.5, 5)
 shape = SubResource("RectangleShape2D_x7yvf")
 
-[node name="Label" type="Label" parent="." unique_id=72448203]
-offset_left = -40.0
-offset_right = -12.0
-offset_bottom = 23.0
-text = "Key"
+[node name="KeySprite" type="Sprite2D" parent="." unique_id=366098566]
+position = Vector2(-25.424797, 12.377363)
+rotation = 0.06806784
+scale = Vector2(0.9758222, 0.8781648)
+skew = 0.050614547
+texture = ExtResource("3_08cju")

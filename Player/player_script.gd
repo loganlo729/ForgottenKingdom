@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Player
 
 signal health_changed(current_health: int, max_health: int)
 
@@ -30,6 +31,9 @@ const MAX_JUMPS = 2
 const GUARD_DURATION = 0.3
 const GUARD_COOLDOWN = 0.5
 
+# UNLOCKS
+var hasKeys = [false, false]
+
 @onready var sprite = $AnimatedSprite2D
 @onready var bullet_sprite = $AnimatedSprite2D/Bullet
 @onready var attack_box = $BaseAttackBox
@@ -60,6 +64,12 @@ var guard_cooldown_left = 0.0
 
 
 func _ready():
+	var ui: UILayer = get_tree().get_first_node_in_group("ui") as UILayer
+	if ui:
+		for i in range(hasKeys.size()):
+			if hasKeys[i]:
+				ui.add_key(i)
+	
 	print(player_health)
 	# Send initial health information
 	health_changed.emit(player_health, max_health)
@@ -308,3 +318,11 @@ func take_damage(amount: int, source_position: Vector2):
 	if player_health <= 0:
 		# Reload scene on death
 		get_tree().reload_current_scene()
+		
+func add_key(keyNum):
+	if (keyNum >= 0 && keyNum < hasKeys.size()):
+		hasKeys[keyNum] = true
+
+func remove_key(keyNum):
+	if (keyNum >= 0 && keyNum < hasKeys.size()):
+		hasKeys[keyNum] = false

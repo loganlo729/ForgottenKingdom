@@ -1,6 +1,14 @@
 [gd_scene format=3 uid="uid://b6py7x4axydfi"]
 
 [ext_resource type="Script" uid="uid://dfh2gho5rvnet" path="res://UI/on_screen_health.gd" id="1_f6vxx"]
+[ext_resource type="Texture2D" uid="uid://b4hdan8w882w5" path="res://Assets/healthFill.png" id="2_ajob6"]
+[ext_resource type="FontFile" uid="uid://bhth8caglrb0a" path="res://UI/Isometra-Regular.ttf" id="2_f6vxx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ajob6"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_f6vxx"]
+texture = ExtResource("2_ajob6")
 
 [node name="OnScreenHealth" type="Control" unique_id=1651802837]
 layout_mode = 3
@@ -15,15 +23,22 @@ script = ExtResource("1_f6vxx")
 layout_mode = 0
 offset_left = 38.0
 offset_top = 42.0
-offset_right = 223.0
-offset_bottom = 76.0
+offset_right = 301.0
+offset_bottom = 83.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_styles/background = SubResource("StyleBoxFlat_ajob6")
+theme_override_styles/fill = SubResource("StyleBoxTexture_f6vxx")
 max_value = 5.0
+value = 3.3
 show_percentage = false
 
 [node name="HealthLabel" type="Label" parent="." unique_id=377624605]
 layout_mode = 0
-offset_left = 95.0
-offset_top = 48.0
-offset_right = 165.0
-offset_bottom = 71.0
-text = "Health: 5"
+offset_left = 37.0
+offset_top = 21.0
+offset_right = 133.0
+offset_bottom = 44.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_f6vxx")
+theme_override_font_sizes/font_size = 16
+text = "Health"

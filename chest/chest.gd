@@ -4,10 +4,10 @@ var player_near := false
 var opened := false
 
 @onready var sprite = $AnimatedSprite2D
-@onready var label = $Label
+@onready var key_sprite = $KeySprite
 
 func _ready():
-	label.hide()
+	key_sprite.hide()
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
 	
@@ -21,6 +21,10 @@ func _on_body_exited(body):
 		player_near = false
 
 func _input(event):
+	# Cast to UI
+	# Get the first node in the "player" group and cast it to Player
+	
+	
 	if event.is_action_pressed("Interact"):
 		print("E pressed, near: ", player_near, " opened: ", opened)
 	if player_near and not opened and event.is_action_pressed("Interact"):
@@ -30,6 +34,6 @@ func _input(event):
 		print("playing open")
 		sprite.play("default")
 		await sprite.animation_finished
-		label.show()
+		key_sprite.show()
 		await get_tree().create_timer(2.0).timeout
-		label.hide()
+		key_sprite.hide()

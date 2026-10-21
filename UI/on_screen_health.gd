@@ -2,7 +2,7 @@ extends Control
 
 var player
 
-@onready var health_label = $HealthLabel
+#@onready var health_label = $HealthLabel
 @onready var health_bar = $HealthBar
 
 func _ready() -> void:
@@ -17,6 +17,6 @@ func _ready() -> void:
 		push_error("Health UI: Player node not found in 'Player' group!")
 
 func _on_player_health_changed(current_health: int, max_health: int) -> void:
-	health_label.text = "Health: " + str(current_health)
+	#health_label.text = "Health: " + str(current_health)
 	health_bar.max_value = max_health
 	health_bar.value = current_health
