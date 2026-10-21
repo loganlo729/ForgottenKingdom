@@ -6,13 +6,14 @@ var opened := false
 @onready var sprite = $AnimatedSprite2D
 @onready var key_sprite = $KeySprite
 
+
 func _ready():
 	key_sprite.hide()
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
 	
 func _on_body_entered(body):
-	print("entered: ", body.name)
+	print("chest area entered by: ", body.name)
 	if body is CharacterBody2D:
 		player_near = true
 
@@ -26,12 +27,11 @@ func _input(event):
 	
 	
 	if event.is_action_pressed("Interact"):
-		print("E pressed, near: ", player_near, " opened: ", opened)
+		print("chest sees E, near: ", player_near, " opened: ", opened)
 	if player_near and not opened and event.is_action_pressed("Interact"):
+		get_viewport().set_input_as_handled()
 		opened = true
 		GameState.has_key = true
-		print("key given")
-		print("playing open")
 		sprite.play("default")
 		await sprite.animation_finished
 		key_sprite.show()
