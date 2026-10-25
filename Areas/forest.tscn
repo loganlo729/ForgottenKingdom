@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://bk6smis765iaa" path="res://Assets/Area1/Legacy-Fantasy_-_High_Forest_2.0/Legacy-Fantasy - High Forest 2.3/Assets/Interior-01.png" id="5_j4y2a"]
 [ext_resource type="Texture2D" uid="uid://b4coqvg0g0wrm" path="res://Assets/Area1/GothicVania-town-files/PNG/environment/props-sliced/chuch.png" id="6_yblu2"]
 [ext_resource type="Script" uid="uid://dnc4vnffotvcn" path="res://Scripts/door.gd" id="8_5qot8"]
+[ext_resource type="Script" uid="uid://b32eysbimpf7y" path="res://Scripts/door2Cave.gd" id="12_yblu2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lnf62"]
 texture = ExtResource("3_6jdmn")
@@ -2477,6 +2478,7 @@ position = Vector2(3474, 564)
 shape = SubResource("RectangleShape2D_7ahkn")
 
 [node name="Door2" type="Area2D" parent="." unique_id=1135186079]
+script = ExtResource("12_yblu2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door2" unique_id=3983701]
 position = Vector2(3012, 824)
@@ -2490,7 +2492,7 @@ offset_bottom = 783.0
 text = "Need Key."
 
 [node name="ChurchExit" type="Marker2D" parent="." unique_id=2009932237]
-position = Vector2(1800, 837)
+position = Vector2(3448, 600)
 
 [node name="FromDrop" type="Marker2D" parent="." unique_id=1808679349]
 position = Vector2(357, 320)
