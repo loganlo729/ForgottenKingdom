@@ -2469,7 +2469,7 @@ position = Vector2(3472, 480)
 texture = ExtResource("6_yblu2")
 
 [node name="Player" parent="." unique_id=1904947197 instance=ExtResource("1_1h4ve")]
-position = Vector2(2795, 572)
+position = Vector2(251, 767)
 
 [node name="Door" type="Area2D" parent="." unique_id=925281358]
 script = ExtResource("8_5qot8")
