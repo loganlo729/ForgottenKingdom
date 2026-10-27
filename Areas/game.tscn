@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dhgutft4ic0w4" path="res://Assets/Area1/Legacy-Fantasy_-_High_Forest_2.0/Legacy-Fantasy - High Forest 2.3/Background/Background.png" id="1_0cv4k"]
 [ext_resource type="PackedScene" uid="uid://bolgtjw6ucmdr" path="res://UI/ui_layer.tscn" id="1_7g8qh"]
+[ext_resource type="PackedScene" uid="uid://6a3vbrpyab6h" path="res://Enemy/boar.tscn" id="1_bx0gj"]
 [ext_resource type="Texture2D" uid="uid://c40ohuyolh7gf" path="res://Assets/Area1/Legacy-Fantasy_-_High_Forest_2.0/Legacy-Fantasy - High Forest 2.3/Assets/Tiles.png" id="2_t8ain"]
 [ext_resource type="Texture2D" uid="uid://cdig80e4hmb0w" path="res://Assets/Area1/Legacy-Fantasy_-_High_Forest_2.0/Legacy-Fantasy - High Forest 2.3/Assets/Buildings.png" id="3_7g8qh"]
 [ext_resource type="Texture2D" uid="uid://7lb2lmokovjn" path="res://Assets/Area1/Legacy-Fantasy_-_High_Forest_2.0/Legacy-Fantasy - High Forest 2.3/Assets/Tree-Assets.png" id="4_5vuuj"]
@@ -10,10 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://bp7l0rre57kdb" path="res://Assets/Area1/Legacy-Fantasy_-_High_Forest_2.0/Legacy-Fantasy - High Forest 2.3/Assets/Hive.png" id="7_7hlwi"]
 [ext_resource type="Texture2D" uid="uid://varkw3lib7fd" path="res://Assets/Area1/ch_02_world_building_foundations/forgotten_forest_example_tileset.png" id="8_1jxmk"]
 [ext_resource type="PackedScene" uid="uid://dkxv0w0p8vm6x" path="res://Player/player.tscn" id="9_qlc82"]
-[ext_resource type="Texture2D" uid="uid://c6i5rxomec6ag" path="res://Assets/Area1/Legacy-Fantasy_-_High_Forest_2.0/Legacy-Fantasy - High Forest 2.3/Mob/Boar/Walk/Walk-Base-Sheet.png" id="11_3rtb5"]
-[ext_resource type="Texture2D" uid="uid://b42ulx5swe3lp" path="res://Assets/Area1/Legacy-Fantasy_-_High_Forest_2.0/Legacy-Fantasy - High Forest 2.3/Mob/Boar/Idle/Idle-Sheet.png" id="12_0q7hv"]
-[ext_resource type="Script" uid="uid://bbkmrdqa54m5v" path="res://Scripts/boar.gd" id="12_7g8qh"]
-[ext_resource type="Texture2D" uid="uid://d3asmfcmjc3gn" path="res://Assets/Area1/Legacy-Fantasy_-_High_Forest_2.0/Legacy-Fantasy - High Forest 2.3/Mob/Boar/Hit-Vanish/Hit-Sheet.png" id="13_suni0"]
 [ext_resource type="Script" uid="uid://cw075rjamqtc1" path="res://Scripts/forest_drop.gd" id="14_t8ain"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t8ain"]
@@ -3421,113 +3418,6 @@ sources/6 = SubResource("TileSetAtlasSource_1jxmk")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dqw1c"]
 size = Vector2(107, 52)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xa8c5"]
-atlas = ExtResource("13_suni0")
-region = Rect2(0, 0, 48, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5b14r"]
-atlas = ExtResource("13_suni0")
-region = Rect2(48, 0, 48, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qhcbd"]
-atlas = ExtResource("12_0q7hv")
-region = Rect2(0, 0, 48, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_f1jbl"]
-atlas = ExtResource("12_0q7hv")
-region = Rect2(48, 0, 48, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vaj68"]
-atlas = ExtResource("12_0q7hv")
-region = Rect2(96, 0, 48, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_i2p71"]
-atlas = ExtResource("12_0q7hv")
-region = Rect2(144, 0, 48, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_e8heu"]
-atlas = ExtResource("11_3rtb5")
-region = Rect2(240, 0, 48, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rvswv"]
-atlas = ExtResource("11_3rtb5")
-region = Rect2(192, 0, 48, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_boyg6"]
-atlas = ExtResource("11_3rtb5")
-region = Rect2(144, 0, 48, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_e36ub"]
-atlas = ExtResource("11_3rtb5")
-region = Rect2(96, 0, 48, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hb5m1"]
-atlas = ExtResource("11_3rtb5")
-region = Rect2(48, 0, 48, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_x5p1p"]
-atlas = ExtResource("11_3rtb5")
-region = Rect2(0, 0, 48, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_r6udh"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xa8c5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5b14r")
-}],
-"loop": 1,
-"name": &"death",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qhcbd")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_f1jbl")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vaj68")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_i2p71")
-}],
-"loop": 1,
-"name": &"new_animation",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_e8heu")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rvswv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_boyg6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_e36ub")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hb5m1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_x5p1p")
-}],
-"loop": 1,
-"name": &"walk",
-"speed": 5.0
-}]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_pb5ah"]
-size = Vector2(39, 39)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_pb5ah"]
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ttjii"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ttjii"]
@@ -3576,26 +3466,6 @@ spawn_name = "FromDrop"
 position = Vector2(2600.239, 559.84076)
 shape = SubResource("RectangleShape2D_dqw1c")
 
-[node name="Boar" type="CharacterBody2D" parent="." unique_id=243473545]
-script = ExtResource("12_7g8qh")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Boar" unique_id=1422278782]
-position = Vector2(2047, 481)
-sprite_frames = SubResource("SpriteFrames_r6udh")
-animation = &"death"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Boar" unique_id=527802739]
-position = Vector2(2046.5, 479.5)
-shape = SubResource("RectangleShape2D_pb5ah")
-
-[node name="DetectionArea" type="Area2D" parent="Boar/CollisionShape2D" unique_id=1881595868]
-position = Vector2(-2040.5, -468.5)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Boar/CollisionShape2D/DetectionArea" unique_id=443169590]
-position = Vector2(2042.0001, 464)
-scale = Vector2(3.8400197, 2.8399901)
-shape = SubResource("CircleShape2D_pb5ah")
-
 [node name="Bee" type="CharacterBody2D" parent="." unique_id=1198836594]
 position = Vector2(22, 14)
 
@@ -3605,3 +3475,12 @@ shape = SubResource("CapsuleShape2D_ttjii")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Bee" unique_id=912655884]
 sprite_frames = SubResource("SpriteFrames_ttjii")
+
+[node name="Boar" parent="." unique_id=1556071156 instance=ExtResource("1_bx0gj")]
+position = Vector2(691, 524)
+
+[node name="Boar2" parent="." unique_id=1065228447 instance=ExtResource("1_bx0gj")]
+position = Vector2(2075, 475)
+
+[node name="Boar3" parent="." unique_id=1278984656 instance=ExtResource("1_bx0gj")]
+position = Vector2(1594, 297)

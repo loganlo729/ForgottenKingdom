@@ -173,7 +173,7 @@ animations = [{
 size = Vector2(37.5, 30)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bl8mu"]
-size = Vector2(43, 30)
+size = Vector2(48, 31)
 
 [node name="Boar" type="CharacterBody2D" unique_id=1556071156 groups=["Enemies"]]
 script = ExtResource("1_oheof")
@@ -195,5 +195,8 @@ shape = SubResource("RectangleShape2D_0cv4k")
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=2114745959]
-position = Vector2(-0.5, 1)
+position = Vector2(-4, 0.5)
 shape = SubResource("RectangleShape2D_bl8mu")
+
+[node name="GroundRay" type="RayCast2D" parent="." unique_id=647425481]
+position = Vector2(-31.557, 0)
