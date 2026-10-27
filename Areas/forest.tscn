@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://b4coqvg0g0wrm" path="res://Assets/Area1/GothicVania-town-files/PNG/environment/props-sliced/chuch.png" id="6_yblu2"]
 [ext_resource type="Script" uid="uid://dnc4vnffotvcn" path="res://Scripts/door.gd" id="8_5qot8"]
 [ext_resource type="Script" uid="uid://b32eysbimpf7y" path="res://Scripts/door2Cave.gd" id="12_yblu2"]
+[ext_resource type="FontFile" uid="uid://bhth8caglrb0a" path="res://UI/Isometra-Regular.ttf" id="13_6bqod"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lnf62"]
 texture = ExtResource("3_6jdmn")
@@ -2496,3 +2497,11 @@ position = Vector2(3448, 600)
 
 [node name="FromDrop" type="Marker2D" parent="." unique_id=1808679349]
 position = Vector2(357, 320)
+
+[node name="Label" type="Label" parent="." unique_id=1052461571]
+offset_left = 3367.0
+offset_top = 467.0
+offset_right = 3574.0
+offset_bottom = 490.0
+theme_override_fonts/font = ExtResource("13_6bqod")
+text = "Press E to interact!"

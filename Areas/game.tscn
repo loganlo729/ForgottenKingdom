@@ -11,6 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://bp7l0rre57kdb" path="res://Assets/Area1/Legacy-Fantasy_-_High_Forest_2.0/Legacy-Fantasy - High Forest 2.3/Assets/Hive.png" id="7_7hlwi"]
 [ext_resource type="Texture2D" uid="uid://varkw3lib7fd" path="res://Assets/Area1/ch_02_world_building_foundations/forgotten_forest_example_tileset.png" id="8_1jxmk"]
 [ext_resource type="PackedScene" uid="uid://dkxv0w0p8vm6x" path="res://Player/player.tscn" id="9_qlc82"]
+[ext_resource type="PackedScene" uid="uid://b2cls4cd6d2r8" path="res://Enemy/bomb_bird.tscn" id="13_0cv4k"]
+[ext_resource type="Script" uid="uid://cned7ein62ux8" path="res://Areas/out_of_bounds.gd" id="14_7g8qh"]
 [ext_resource type="Script" uid="uid://cw075rjamqtc1" path="res://Scripts/forest_drop.gd" id="14_t8ain"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t8ain"]
@@ -3422,6 +3424,9 @@ size = Vector2(107, 52)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ttjii"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5vuuj"]
+size = Vector2(482.42566, 412)
+
 [node name="First Ares" type="Node2D" unique_id=615309498]
 position = Vector2(-5, 2)
 
@@ -3431,10 +3436,10 @@ position = Vector2(-5, 2)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 45.0
-offset_top = -2.0
-offset_right = 2545.0
-offset_bottom = 998.0
+offset_left = -776.0
+offset_top = -498.0
+offset_right = 3679.0
+offset_bottom = 1430.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_0cv4k")
@@ -3484,3 +3489,14 @@ position = Vector2(2075, 475)
 
 [node name="Boar3" parent="." unique_id=1278984656 instance=ExtResource("1_bx0gj")]
 position = Vector2(1594, 297)
+
+[node name="BombBird" parent="." unique_id=1334491827 instance=ExtResource("13_0cv4k")]
+position = Vector2(580, 513)
+
+[node name="OutOfBounds" type="Area2D" parent="." unique_id=1380820840]
+script = ExtResource("14_7g8qh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OutOfBounds" unique_id=205481211]
+position = Vector2(1486, 916)
+scale = Vector2(8.905, 1)
+shape = SubResource("RectangleShape2D_5vuuj")

@@ -6,6 +6,8 @@
 [ext_resource type="Script" uid="uid://cyinjawt5h52h" path="res://Scripts/to_deep_cave.gd" id="6_1sdc7"]
 [ext_resource type="Texture2D" uid="uid://1ftkv0pb1mpt" path="res://Assets/Cave Free/Demo/Tiles.png" id="6_trsk6"]
 [ext_resource type="Script" uid="uid://b1ed8br8d5nfn" path="res://Scripts/VolcanoEnter.gd" id="7_3did2"]
+[ext_resource type="PackedScene" uid="uid://b2cls4cd6d2r8" path="res://Enemy/bomb_bird.tscn" id="7_n2ijp"]
+[ext_resource type="PackedScene" uid="uid://6a3vbrpyab6h" path="res://Enemy/boar.tscn" id="8_hcvdq"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3did2"]
 
@@ -1673,6 +1675,10 @@ layer = -1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -764.0
+offset_top = -573.0
+offset_right = 3182.0
+offset_bottom = 3133.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
@@ -1708,3 +1714,30 @@ spawn_name = "FromCave2"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ToDeepCave" unique_id=2083385639]
 position = Vector2(40, 2923)
 shape = SubResource("RectangleShape2D_dqw1c")
+
+[node name="BombBird" parent="." unique_id=1334491827 instance=ExtResource("7_n2ijp")]
+position = Vector2(927, 153)
+
+[node name="BombBird2" parent="." unique_id=1588368256 instance=ExtResource("7_n2ijp")]
+position = Vector2(999, 1104)
+
+[node name="BombBird3" parent="." unique_id=936747814 instance=ExtResource("7_n2ijp")]
+position = Vector2(1360, 1101)
+
+[node name="BombBird4" parent="." unique_id=1406365759 instance=ExtResource("7_n2ijp")]
+position = Vector2(1884, 1800)
+
+[node name="BombBird5" parent="." unique_id=1954639315 instance=ExtResource("7_n2ijp")]
+position = Vector2(850, 3156)
+
+[node name="Boar" parent="." unique_id=1556071156 instance=ExtResource("8_hcvdq")]
+position = Vector2(1885, 1619)
+
+[node name="Boar2" parent="." unique_id=1519041346 instance=ExtResource("8_hcvdq")]
+position = Vector2(1040, 1696)
+
+[node name="Boar3" parent="." unique_id=1252877583 instance=ExtResource("8_hcvdq")]
+position = Vector2(2822, 1888)
+
+[node name="Boar4" parent="." unique_id=806281960 instance=ExtResource("8_hcvdq")]
+position = Vector2(910, 3211)

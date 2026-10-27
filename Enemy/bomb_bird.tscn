@@ -1,0 +1,137 @@
+[gd_scene format=3 uid="uid://b2cls4cd6d2r8"]
+
+[ext_resource type="Texture2D" uid="uid://cqdpqem0fbw5r" path="res://Assets/Enemy_Galore_I/Bat/Bat_Attack_FX.png" id="1_gtv63"]
+[ext_resource type="Script" uid="uid://csm1557wmy2rk" path="res://Enemy/bomb_bird.gd" id="1_ybg8i"]
+[ext_resource type="Texture2D" uid="uid://c6l2heqbw7olp" path="res://Assets/Enemy_Galore_I/Bat/Bat_Full.png" id="2_ybg8i"]
+[ext_resource type="Texture2D" uid="uid://er7be27xk2r3" path="res://Assets/Enemy_Galore_I/Bat/Bat_Fly.png" id="3_26u7x"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pp076"]
+atlas = ExtResource("1_gtv63")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_st3n8"]
+atlas = ExtResource("1_gtv63")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jbx8d"]
+atlas = ExtResource("1_gtv63")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j24xr"]
+atlas = ExtResource("1_gtv63")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5be0k"]
+atlas = ExtResource("2_ybg8i")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bbkuc"]
+atlas = ExtResource("2_ybg8i")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_277ie"]
+atlas = ExtResource("2_ybg8i")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_56o21"]
+atlas = ExtResource("2_ybg8i")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fabmr"]
+atlas = ExtResource("3_26u7x")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7xrx4"]
+atlas = ExtResource("3_26u7x")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4m2sg"]
+atlas = ExtResource("3_26u7x")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yjnc0"]
+atlas = ExtResource("3_26u7x")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bl8mu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pp076")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_st3n8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jbx8d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j24xr")
+}],
+"loop": 1,
+"name": &"explode",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5be0k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bbkuc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_277ie")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_56o21")
+}],
+"loop": 1,
+"name": &"fly",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fabmr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7xrx4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4m2sg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yjnc0")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3jjan"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gracg"]
+size = Vector2(511, 373)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mq2ta"]
+radius = 28.0
+
+[node name="BombBird" type="CharacterBody2D" unique_id=1334491827]
+script = ExtResource("1_ybg8i")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=279330764]
+sprite_frames = SubResource("SpriteFrames_bl8mu")
+animation = &"explode"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=754022421]
+shape = SubResource("CircleShape2D_3jjan")
+
+[node name="DetectionArea" type="Area2D" parent="." unique_id=1224620193]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=617477279]
+position = Vector2(-2.5, -0.5)
+shape = SubResource("RectangleShape2D_gracg")
+
+[node name="ExplosionArea" type="Area2D" parent="." unique_id=1856021395]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosionArea" unique_id=1994480607]
+shape = SubResource("CircleShape2D_mq2ta")
