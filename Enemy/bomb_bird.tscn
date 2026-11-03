@@ -115,31 +115,35 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_3jjan"]
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gracg"]
-size = Vector2(511, 373)
+size = Vector2(362, 261)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mq2ta"]
-radius = 28.0
+radius = 17.029387
 
-[node name="BombBird" type="CharacterBody2D" unique_id=1334491827]
+[sub_resource type="CircleShape2D" id="CircleShape2D_3jjan"]
+radius = 14.0
+
+[node name="BombBird" type="CharacterBody2D" unique_id=656914240]
+collision_layer = 2
+collision_mask = 5
 script = ExtResource("1_ybg8i")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=279330764]
 sprite_frames = SubResource("SpriteFrames_bl8mu")
 animation = &"explode"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=754022421]
-shape = SubResource("CircleShape2D_3jjan")
-
 [node name="DetectionArea" type="Area2D" parent="." unique_id=1224620193]
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=617477279]
-position = Vector2(-2.5, -0.5)
 shape = SubResource("RectangleShape2D_gracg")
 
 [node name="ExplosionArea" type="Area2D" parent="." unique_id=1856021395]
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosionArea" unique_id=1994480607]
 shape = SubResource("CircleShape2D_mq2ta")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=754022421]
+shape = SubResource("CircleShape2D_3jjan")

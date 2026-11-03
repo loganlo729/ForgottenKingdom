@@ -516,6 +516,8 @@ height = 34.0
 size = Vector2(15.405405, 34)
 
 [node name="Player" type="CharacterBody2D" unique_id=1904947197 groups=["Player"]]
+collision_layer = 3
+collision_mask = 7
 script = ExtResource("1_tok1r")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=235842596]
@@ -537,6 +539,7 @@ zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 
 [node name="BaseAttackBox" type="Area2D" parent="." unique_id=1032431255]
+collision_mask = 3
 monitoring = false
 monitorable = false
 
@@ -545,6 +548,8 @@ position = Vector2(22, 0)
 shape = SubResource("RectangleShape2D_bl8mu")
 
 [node name="RangedAttackBox" type="Area2D" parent="." unique_id=1721806045]
+collision_layer = 0
+collision_mask = 3
 monitoring = false
 monitorable = false
 

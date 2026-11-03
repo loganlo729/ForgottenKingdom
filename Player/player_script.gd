@@ -153,6 +153,9 @@ func _on_upgrade_unlocked(upgrade_name: String) -> void:
 		"air_dash":
 			pass
 
+		"wall_jump":
+			wall_jump_lock_left = 0.0
+
 
 # --------------------------------
 # MELEE DAMAGE
@@ -217,15 +220,17 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 
 	# --------------------------------
-	# WALL SLIDING
+	# WALL SLIDING (UPGRADE REQUIRED)
 	# --------------------------------
 
 	var wall_sliding = (
-		not on_floor
+		Upgrades.has_wall_jump
+		and not on_floor
 		and on_wall
 		and velocity.y > 0.0
 		and not is_dashing
 		and not is_attacking
+		and wall_jump_lock_left <= 0.0
 	)
 
 	if wall_sliding:
@@ -280,7 +285,11 @@ func _physics_process(delta: float) -> void:
 	# FACING DIRECTION
 	# --------------------------------
 
-	if direction != 0 and not is_attacking and not is_dashing:
+	if direction != 0 \
+	and not is_attacking \
+	and not is_dashing \
+	and wall_jump_lock_left <= 0.0:
+
 		sprite.flip_h = direction < 0
 
 		bullet_sprite.flip_h = direction < 0
@@ -308,13 +317,14 @@ func _physics_process(delta: float) -> void:
 			velocity.y = JUMP_VELOCITY
 			jumps_left -= 1
 
-		# WALL JUMP
-		elif on_wall and wall_jump_lock_left <= 0.0:
+		# WALL JUMP (UPGRADE REQUIRED)
+		elif Upgrades.has_wall_jump \
+		and on_wall \
+		and wall_jump_lock_left <= 0.0:
 
-			# The normal points away from the wall.
 			var wall_normal = get_wall_normal()
 
-			# Cancel dash before wall jumping.
+			# Cancel active dash.
 			if is_dashing:
 				is_dashing = false
 				dash_time_left = 0.0
@@ -327,12 +337,11 @@ func _physics_process(delta: float) -> void:
 				wall_normal.x * WALL_JUMP_PUSH_SPEED
 			)
 
-			# Temporarily prevent movement input
-			# from cancelling the horizontal launch.
+			# Lock movement briefly.
 			wall_jump_lock_left = WALL_JUMP_CONTROL_LOCK
 
-			# Wall jumps don't require a jump charge.
-			# Restore one extra air jump if unlocked.
+			# Preserve one air jump if double
+			# jump is unlocked.
 			jumps_left = max(
 				get_max_jumps() - 1,
 				0
@@ -467,25 +476,16 @@ func _physics_process(delta: float) -> void:
 	# --------------------------------
 
 	if is_dashing:
-		# Maintain dash momentum.
 		pass
 
 	elif wall_jump_lock_left > 0.0:
-		# Preserve horizontal wall-jump momentum.
-		# Normal movement resumes when timer ends.
+		# Keep wall-jump momentum.
 		pass
 
 	elif is_attacking:
 		if not on_floor:
 			velocity.x = 0.0
 			velocity.y = 0.0
-
-		elif combo_count == 3:
-			velocity.x = move_toward(
-				velocity.x,
-				0.0,
-				DECELERATION * delta
-			)
 
 		else:
 			velocity.x = move_toward(
@@ -521,8 +521,6 @@ func _physics_process(delta: float) -> void:
 		sprite.play("run")
 
 	elif wall_sliding:
-		# Optional wall-slide animation.
-		# Falls back to jump if one doesn't exist.
 		if sprite.sprite_frames.has_animation("wall_slide"):
 			sprite.play("wall_slide")
 		else:

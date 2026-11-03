@@ -14,11 +14,10 @@ func unlock(upgrade_name: String) -> void:
 			has_air_dash = true
 		"double_jump":
 			has_double_jump = true
-		"has_wall_jump":
+		"wall_jump":
 			has_wall_jump = true
 		"long_sword":
 			has_long_sword = true
-		
 		_:
 			push_warning("Unknown upgrade: " + upgrade_name)
 			return
