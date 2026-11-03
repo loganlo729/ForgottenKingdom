@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://bml3uqy6lo5ew"]
+
+[ext_resource type="Script" uid="uid://c6by7sjmdgxfi" path="res://Player/upgrade_pickup.gd" id="1_5e1uk"]
+[ext_resource type="Texture2D" uid="uid://b0hrqvhisnq1f" path="res://Assets/Cave Free/Demo/Coin.png" id="1_y6qlu"]
+[ext_resource type="FontFile" uid="uid://bhth8caglrb0a" path="res://UI/Isometra-Regular.ttf" id="3_skdm0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5e1uk"]
+atlas = ExtResource("1_y6qlu")
+region = Rect2(0, 0, 10, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skdm0"]
+atlas = ExtResource("1_y6qlu")
+region = Rect2(10, 0, 10, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mwvov"]
+atlas = ExtResource("1_y6qlu")
+region = Rect2(20, 0, 10, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0iam5"]
+atlas = ExtResource("1_y6qlu")
+region = Rect2(30, 0, 10, 12)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fhlp7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5e1uk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skdm0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mwvov")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0iam5")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 3.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fhlp7"]
+size = Vector2(10, 12)
+
+[node name="UpgradePickup" type="Area2D" unique_id=702739754]
+script = ExtResource("1_5e1uk")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=528830308]
+sprite_frames = SubResource("SpriteFrames_fhlp7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=522613572]
+shape = SubResource("RectangleShape2D_fhlp7")
+
+[node name="Label" type="Label" parent="." unique_id=879450752]
+offset_left = -34.0
+offset_top = -16.0
+offset_right = 34.0
+offset_bottom = -5.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_skdm0")
+theme_override_font_sizes/font_size = 5
+text = "Double Jump"
+horizontal_alignment = 1

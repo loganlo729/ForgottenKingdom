@@ -1,3 +1,4 @@
+
 extends CharacterBody2D
 class_name Player
 
@@ -9,40 +10,57 @@ var player_health = 5
 var is_hit = false
 var hit_stun_time = 0.25
 
-# SPEED / DASH CONFIG
+# MOVEMENT / DASH
 const SPEED = 150.0
 const RUN_SPEED = 250.0
 const JUMP_VELOCITY = -380.0
-var LAUNCH_SPEED = 500.0
+const LAUNCH_SPEED = 500.0
 const DASH_DURATION = 0.12
 const DASH_COOLDOWN = 0.6
+const DECELERATION = 1500.0
 
-# COMBO CONFIG
+# WALL JUMP / WALL SLIDE
+const WALL_SLIDE_SPEED = 65.0
+const WALL_JUMP_VELOCITY = -380.0
+const WALL_JUMP_PUSH_SPEED = 280.0
+const WALL_JUMP_CONTROL_LOCK = 0.18
+
+# COMBO
 const ATTACK_DURATION = 0.25
 const COMBO_WINDOW = 0.55
 const FINISHER_LUNGE_SPEED = 350.0
-# RANGED CONFIG
+
+# RANGED
 const RANGED_ATTACK_DURATION = 0.10
 
-# JUMP CONFIG
-const MAX_JUMPS = 2
+# JUMP UPGRADES
+const BASE_JUMPS = 1
+const UPGRADED_JUMPS = 2
 
-# GUARD CONFIGURATION
+# SWORD UPGRADES
+const NORMAL_SWORD_RANGE = 1.0
+const LONG_SWORD_RANGE = 1.5
+
+# GUARD
 const GUARD_DURATION = 0.3
 const GUARD_COOLDOWN = 0.5
 
-# UNLOCKS
+# KEYS
 var hasKeys = [false, false]
 
-@onready var sprite = $AnimatedSprite2D
-@onready var bullet_sprite = $AnimatedSprite2D/Bullet
-@onready var attack_box = $BaseAttackBox
-@onready var ranged_attack_box = $RangedAttackBox
+# NODES
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var bullet_sprite: AnimatedSprite2D = $AnimatedSprite2D/Bullet
+@onready var attack_box: Area2D = $BaseAttackBox
+@onready var ranged_attack_box: Area2D = $RangedAttackBox
 
 # DASH VARIABLES
 var is_dashing = false
 var dash_time_left = 0.0
 var dash_cooldown_left = 0.0
+
+# WALL JUMP VARIABLES
+var wall_jump_lock_left = 0.0
 
 # COMBO VARIABLES
 var is_attacking = false
@@ -50,6 +68,7 @@ var attack_time_left = 0.0
 var combo_count = 0
 var combo_time_left = 0.0
 var has_air_attacked = false
+
 # RANGED VARIABLES
 var is_ranged_attacking = false
 var ranged_attack_time_left = 0.0
@@ -63,266 +82,535 @@ var guard_time_left = 0.0
 var guard_cooldown_left = 0.0
 
 
-func _ready():
-	var ui: UILayer = get_tree().get_first_node_in_group("ui") as UILayer
+# --------------------------------
+# INITIALIZATION
+# --------------------------------
+
+func _ready() -> void:
+	jumps_left = get_max_jumps()
+
+	if not Upgrades.upgrade_unlocked.is_connected(
+		_on_upgrade_unlocked
+	):
+		Upgrades.upgrade_unlocked.connect(
+			_on_upgrade_unlocked
+		)
+
+	update_sword_range()
+
+	var ui: UILayer = (
+		get_tree().get_first_node_in_group("ui") as UILayer
+	)
+
 	if ui:
 		for i in range(hasKeys.size()):
 			if hasKeys[i]:
 				ui.add_key(i)
-	
-	print(player_health)
-	# Send initial health information
+
 	health_changed.emit(player_health, max_health)
 
-	# Connect the attack box to detect enemy bodies entering its region
-	if not attack_box.body_entered.is_connected(_on_attack_box_body_entered):
-		attack_box.body_entered.connect(_on_attack_box_body_entered)
+	if not attack_box.body_entered.is_connected(
+		_on_attack_box_body_entered
+	):
+		attack_box.body_entered.connect(
+			_on_attack_box_body_entered
+		)
+
+	attack_box.monitoring = false
+	ranged_attack_box.monitoring = false
 
 
-func _on_attack_box_body_entered(body: Node2D):
-	# Verify if the node entered is in our enemy group and handles taking hits
-	if body.is_in_group("Enemies") and body.has_method("take_damage"):
-		# Determine knockback direction relative to player orientation
-		var knockback_direction = Vector2.LEFT if sprite.flip_h else Vector2.RIGHT
+# --------------------------------
+# UPGRADES
+# --------------------------------
 
-		# Deal 2 damage on the 3rd swing finisher, otherwise deal 1 damage
-		var damage_to_deal = 2 if combo_count == 3 else 1
+func get_max_jumps() -> int:
+	if Upgrades.has_double_jump:
+		return UPGRADED_JUMPS
 
-		body.take_damage(damage_to_deal, knockback_direction)
+	return BASE_JUMPS
 
 
-func _physics_process(delta):
-	# Reset jump charges and air attack limits after landing
-	if is_on_floor():
-		jumps_left = MAX_JUMPS
+func update_sword_range() -> void:
+	var multiplier = NORMAL_SWORD_RANGE
+
+	if Upgrades.has_long_sword:
+		multiplier = LONG_SWORD_RANGE
+
+	var facing = -1.0 if sprite.flip_h else 1.0
+
+	attack_box.scale.x = multiplier * facing
+
+
+func _on_upgrade_unlocked(upgrade_name: String) -> void:
+	match upgrade_name:
+		"double_jump":
+			jumps_left = get_max_jumps()
+
+		"long_sword":
+			update_sword_range()
+
+		"air_dash":
+			pass
+
+
+# --------------------------------
+# MELEE DAMAGE
+# --------------------------------
+
+func _on_attack_box_body_entered(body: Node2D) -> void:
+	if not is_attacking:
+		return
+
+	if body.is_in_group("Enemies") and body.has_method(
+		"take_damage"
+	):
+		var knockback_direction = (
+			Vector2.LEFT if sprite.flip_h else Vector2.RIGHT
+		)
+
+		var damage_to_deal = 1
+
+		if combo_count == 3:
+			damage_to_deal = 2
+
+		body.take_damage(
+			damage_to_deal,
+			knockback_direction
+		)
+
+
+# --------------------------------
+# PHYSICS
+# --------------------------------
+
+func _physics_process(delta: float) -> void:
+
+	var on_floor = is_on_floor()
+	var on_wall = is_on_wall()
+
+	var direction = Input.get_axis(
+		"move_left",
+		"move_right"
+	)
+
+	# Reset jumps and air attacks on landing.
+	if on_floor:
+		jumps_left = get_max_jumps()
 		has_air_attacked = false
 
-	# GRAVITY LOGIC
-	if not is_on_floor() and not is_attacking:
+	# --------------------------------
+	# WALL JUMP CONTROL TIMER
+	# --------------------------------
+
+	if wall_jump_lock_left > 0.0:
+		wall_jump_lock_left = max(
+			wall_jump_lock_left - delta,
+			0.0
+		)
+
+	# --------------------------------
+	# GRAVITY
+	# --------------------------------
+
+	if not on_floor and not is_attacking:
 		velocity += get_gravity() * delta
 
-	# Process active dash duration
+	# --------------------------------
+	# WALL SLIDING
+	# --------------------------------
+
+	var wall_sliding = (
+		not on_floor
+		and on_wall
+		and velocity.y > 0.0
+		and not is_dashing
+		and not is_attacking
+	)
+
+	if wall_sliding:
+		velocity.y = min(
+			velocity.y,
+			WALL_SLIDE_SPEED
+		)
+
+	# --------------------------------
+	# DASH TIMER
+	# --------------------------------
+
 	if is_dashing:
 		dash_time_left -= delta
-		if dash_time_left <= 0:
+
+		if dash_time_left <= 0.0:
 			is_dashing = false
+			velocity.x = 0.0
 
-	# Process active cooldown countdown
-	if dash_cooldown_left > 0:
-		dash_cooldown_left -= delta
+	# DASH COOLDOWN
+	if dash_cooldown_left > 0.0:
+		dash_cooldown_left = max(
+			dash_cooldown_left - delta,
+			0.0
+		)
 
-	# Process active attack duration
+	# ATTACK TIMER
 	if is_attacking:
 		attack_time_left -= delta
-		if attack_time_left <= 0:
+
+		if attack_time_left <= 0.0:
 			is_attacking = false
 			attack_box.monitoring = false
 			combo_time_left = COMBO_WINDOW
 
-	# Process active attack duration
+	# RANGED TIMER
 	if is_ranged_attacking:
 		ranged_attack_time_left -= delta
-		if ranged_attack_time_left <= 0:
+
+		if ranged_attack_time_left <= 0.0:
 			is_ranged_attacking = false
 			ranged_attack_box.monitoring = false
-			ranged_attack_time_left = RANGED_ATTACK_DURATION
 
-	# Process combo reset window
+	# COMBO RESET TIMER
 	if not is_attacking and combo_count > 0:
 		combo_time_left -= delta
-		if combo_time_left <= 0:
+
+		if combo_time_left <= 0.0:
 			combo_count = 0
 
-	var direction = Input.get_axis("move_left", "move_right")
+	# --------------------------------
+	# FACING DIRECTION
+	# --------------------------------
 
-	# Flip the BaseAttackBox position to match where the player looks
 	if direction != 0 and not is_attacking and not is_dashing:
-		attack_box.scale.x = -1 if direction < 0 else 1
-	# Flip the RangedAttackBox position to match where the player looks
-	if direction != 0 and not is_attacking and not is_dashing:
-		ranged_attack_box.scale.x = -1 if direction < 0 else 1
+		sprite.flip_h = direction < 0
 
-	# HANDLE JUMP & DOUBLE JUMP
-	if Input.is_action_just_pressed("jump") and not is_attacking:
-		if is_on_floor():
+		bullet_sprite.flip_h = direction < 0
+
+		if direction < 0:
+			bullet_sprite.position.x = -62
+		else:
+			bullet_sprite.position.x = 62
+
+		update_sword_range()
+
+		ranged_attack_box.scale.x = (
+			-1 if direction < 0 else 1
+		)
+
+	# --------------------------------
+	# JUMP / DOUBLE JUMP / WALL JUMP
+	# --------------------------------
+
+	if Input.is_action_just_pressed("jump") \
+	and not is_attacking:
+
+		# REGULAR GROUND JUMP
+		if on_floor:
 			velocity.y = JUMP_VELOCITY
 			jumps_left -= 1
+
+		# WALL JUMP
+		elif on_wall and wall_jump_lock_left <= 0.0:
+
+			# The normal points away from the wall.
+			var wall_normal = get_wall_normal()
+
+			# Cancel dash before wall jumping.
+			if is_dashing:
+				is_dashing = false
+				dash_time_left = 0.0
+
+			# Launch upward.
+			velocity.y = WALL_JUMP_VELOCITY
+
+			# Push away from the wall.
+			velocity.x = (
+				wall_normal.x * WALL_JUMP_PUSH_SPEED
+			)
+
+			# Temporarily prevent movement input
+			# from cancelling the horizontal launch.
+			wall_jump_lock_left = WALL_JUMP_CONTROL_LOCK
+
+			# Wall jumps don't require a jump charge.
+			# Restore one extra air jump if unlocked.
+			jumps_left = max(
+				get_max_jumps() - 1,
+				0
+			)
+
+			wall_sliding = false
+
+		# DOUBLE JUMP
 		elif jumps_left > 0:
 			velocity.y = JUMP_VELOCITY
 			jumps_left -= 1
-			is_dashing = false
 
-	# Trigger guard
+			if is_dashing:
+				is_dashing = false
+				dash_time_left = 0.0
+				velocity.x = 0.0
+
+	# --------------------------------
+	# GUARD
+	# --------------------------------
+
 	if is_guarding:
 		guard_time_left -= delta
 
-		# If the player releases the button OR runs out of guard time
-		if not Input.is_action_pressed("guard") or guard_time_left <= 0:
+		if not Input.is_action_pressed("guard") \
+		or guard_time_left <= 0.0:
 			is_guarding = false
 			guard_cooldown_left = GUARD_COOLDOWN
-	else:
-		# Lessen guard cooldown when not guarding
-		if guard_cooldown_left > 0:
-			guard_cooldown_left -= delta
 
-	# HANDLE GUARD
-	if Input.is_action_pressed("guard") and not is_guarding and guard_cooldown_left <= 0 and not is_dashing and not is_attacking and not is_ranged_attacking:
+	else:
+		if guard_cooldown_left > 0.0:
+			guard_cooldown_left = max(
+				guard_cooldown_left - delta,
+				0.0
+			)
+
+	if Input.is_action_pressed("guard") \
+	and not is_guarding \
+	and guard_cooldown_left <= 0.0 \
+	and not is_dashing \
+	and not is_attacking \
+	and not is_ranged_attacking:
+
 		is_guarding = true
 		guard_time_left = GUARD_DURATION
 
-	# Trigger the combo chain
-	if Input.is_action_just_pressed("attack") and not is_dashing and not is_attacking and not is_ranged_attacking:
-		# Check if the player is allowed to execute an air attack
-		var can_attack = true
+	# --------------------------------
+	# COMBO ATTACK
+	# --------------------------------
 
-		if has_air_attacked:
-			can_attack = false
+	if Input.is_action_just_pressed("attack") \
+	and not is_dashing \
+	and not is_attacking \
+	and not is_ranged_attacking:
+
+		var can_attack = not has_air_attacked
 
 		if can_attack:
 			is_attacking = true
 			attack_time_left = ATTACK_DURATION
-			attack_box.monitoring = true
-			
 
-			# Set baseline horizontal momentum for hits 1 and 2
-			velocity.x = 0
+			velocity.x = 0.0
 
-			# Advance combo state
 			if combo_count == 0:
 				combo_count = 1
+
 			elif combo_count == 1:
 				combo_count = 2
-				if not is_on_floor:
-					has_air_attacked = true
-			elif combo_count == 2 && is_on_floor():
+
+			elif combo_count == 2 and on_floor:
 				combo_count = 3
-				
-				
-				if not is_on_floor():
-					has_air_attacked = true
-				else:
-					var lunge_dir = Vector2.LEFT if sprite.flip_h else Vector2.RIGHT
-					velocity.x = lunge_dir.x * FINISHER_LUNGE_SPEED
+
+				var lunge_dir = (
+					Vector2.LEFT if sprite.flip_h
+					else Vector2.RIGHT
+				)
+
+				velocity.x = (
+					lunge_dir.x * FINISHER_LUNGE_SPEED
+				)
+
 			else:
 				combo_count = 1
-				
-				if not is_on_floor():
-					has_air_attacked = true
 
-	# Trigger the dash
-	if Input.is_action_just_pressed("run") and not is_dashing and dash_cooldown_left <= 0 and not is_attacking:
+			if not on_floor:
+				has_air_attacked = true
+
+			attack_box.monitoring = true
+
+	# --------------------------------
+	# DASH / AIR DASH
+	# --------------------------------
+
+	var can_dash = on_floor or Upgrades.has_air_dash
+
+	if Input.is_action_just_pressed("dash") \
+	and can_dash \
+	and not is_dashing \
+	and dash_cooldown_left <= 0.0 \
+	and not is_attacking \
+	and not is_guarding:
+
 		is_dashing = true
 		dash_time_left = DASH_DURATION
 		dash_cooldown_left = DASH_COOLDOWN
 
-		var forward_dir = Vector2.LEFT if sprite.flip_h else Vector2.RIGHT
+		var forward_dir = (
+			Vector2.LEFT if sprite.flip_h
+			else Vector2.RIGHT
+		)
 
 		if Input.is_action_pressed("move_down"):
 			forward_dir *= -1
 
 		velocity.x = forward_dir.x * LAUNCH_SPEED
 
-	if Input.is_action_just_pressed("ranged_attack") and not is_dashing and not is_attacking and not is_ranged_attacking:
+	# --------------------------------
+	# RANGED ATTACK
+	# --------------------------------
+
+	if Input.is_action_just_pressed("ranged_attack") \
+	and not is_dashing \
+	and not is_attacking \
+	and not is_ranged_attacking:
+
 		is_ranged_attacking = true
 		ranged_attack_time_left = RANGED_ATTACK_DURATION
 		ranged_attack_box.monitoring = true
 
-	# MOVEMENT LOGIC
+	# --------------------------------
+	# MOVEMENT
+	# --------------------------------
+
 	if is_dashing:
+		# Maintain dash momentum.
 		pass
+
+	elif wall_jump_lock_left > 0.0:
+		# Preserve horizontal wall-jump momentum.
+		# Normal movement resumes when timer ends.
+		pass
+
 	elif is_attacking:
-		if not is_on_floor():
-			velocity.x = 0
-			velocity.y = 0
+		if not on_floor:
+			velocity.x = 0.0
+			velocity.y = 0.0
+
 		elif combo_count == 3:
-			velocity.x = move_toward(velocity.x, 0, SPEED * delta * 10)
+			velocity.x = move_toward(
+				velocity.x,
+				0.0,
+				DECELERATION * delta
+			)
+
 		else:
-			velocity.x = move_toward(velocity.x, 0, SPEED)
+			velocity.x = move_toward(
+				velocity.x,
+				0.0,
+				DECELERATION * delta
+			)
+
 	else:
-		if direction:
-			velocity.x = direction * SPEED
+		if direction != 0:
+			var movement_speed = SPEED
 
 			if Input.is_action_pressed("run"):
-				velocity.x = direction * RUN_SPEED
+				movement_speed = RUN_SPEED
 
-			if direction < 0:
-				sprite.flip_h = true
-				bullet_sprite.flip_h = true
-				bullet_sprite.position.x = -62
-			else:
-				sprite.flip_h = false
-				bullet_sprite.flip_h = false
-				bullet_sprite.position.x = 62
-				
+			velocity.x = direction * movement_speed
+
 		else:
-			velocity.x = move_toward(velocity.x, 0, SPEED)
+			velocity.x = move_toward(
+				velocity.x,
+				0.0,
+				DECELERATION * delta
+			)
 
-	# ANIMATION LOGIC
+	# --------------------------------
+	# ANIMATIONS
+	# --------------------------------
+
 	if is_attacking:
 		sprite.play("attack" + str(combo_count))
-	elif not is_on_floor():
-		sprite.play("jump")
+
 	elif is_dashing:
 		sprite.play("run")
-	elif direction != 0 and abs(velocity.x) >= 200:
-		sprite.play("run")
-	elif direction != 0:
-		sprite.play("walk")
+
+	elif wall_sliding:
+		# Optional wall-slide animation.
+		# Falls back to jump if one doesn't exist.
+		if sprite.sprite_frames.has_animation("wall_slide"):
+			sprite.play("wall_slide")
+		else:
+			sprite.play("jump")
+
+	elif not on_floor:
+		sprite.play("jump")
+
 	elif is_guarding:
 		sprite.play("guard")
+
+	elif direction != 0 and abs(velocity.x) >= 200:
+		sprite.play("run")
+
+	elif direction != 0:
+		sprite.play("walk")
+
 	else:
 		sprite.play("idle")
 
 	if is_ranged_attacking:
 		bullet_sprite.play("bullet")
-		
+
 	move_and_slide()
 
 
-func take_damage(amount: int, source_position: Vector2):
+# --------------------------------
+# DAMAGE / HEALTH
+# --------------------------------
+
+func take_damage(amount: int, source_position: Vector2) -> void:
 	if is_hit or is_dashing:
 		return
 
-	# CHECK IF WE BLOCKED IT
+	# CHECK GUARD
 	if is_guarding:
-		# Check if the enemy is in front of where we are facing
-		var enemy_is_left = source_position.x < global_position.x
+		var enemy_is_left = (
+			source_position.x < global_position.x
+		)
 
-		if (sprite.flip_h and enemy_is_left) or (not sprite.flip_h and not enemy_is_left):
-			# Successful block
-			var block_knockback = Vector2.RIGHT if enemy_is_left else Vector2.LEFT
+		if (sprite.flip_h and enemy_is_left) \
+		or (not sprite.flip_h and not enemy_is_left):
+
+			var block_knockback = (
+				Vector2.RIGHT if enemy_is_left
+				else Vector2.LEFT
+			)
+
 			velocity = block_knockback * 150.0
 			return
 
-	# IF NOT BLOCKED, TAKE DAMAGE
+	# APPLY DAMAGE
 	player_health -= amount
 	is_hit = true
 
-	# Tell the health bar that health changed
 	health_changed.emit(player_health, max_health)
 
-	# Calculate knockback direction away from the source of damage
-	var knockback_dir = Vector2.RIGHT if source_position.x < global_position.x else Vector2.LEFT
+	# KNOCKBACK
+	var knockback_dir = (
+		Vector2.RIGHT
+		if source_position.x < global_position.x
+		else Vector2.LEFT
+	)
+
 	velocity = knockback_dir * 300.0
 	velocity.y = -150.0
 
-	# Turn the player red momentarily
+	# DAMAGE FLASH
 	sprite.modulate = Color(1, 0.3, 0.3)
 
-	# Reset hit state after a brief stun window
 	await get_tree().create_timer(hit_stun_time).timeout
 
 	is_hit = false
-	sprite.modulate = Color(1, 1, 1)
+	sprite.modulate = Color.WHITE
 
 	if player_health <= 0:
-		# Reload scene on death
 		get_tree().reload_current_scene()
-		
-func add_key(keyNum):
-	if (keyNum >= 0 && keyNum < hasKeys.size()):
+
+
+# --------------------------------
+# KEYS
+# --------------------------------
+
+func add_key(keyNum: int) -> void:
+	if keyNum >= 0 and keyNum < hasKeys.size():
 		hasKeys[keyNum] = true
 
-func remove_key(keyNum):
-	if (keyNum >= 0 && keyNum < hasKeys.size()):
+
+func remove_key(keyNum: int) -> void:
+	if keyNum >= 0 and keyNum < hasKeys.size():
 		hasKeys[keyNum] = false
