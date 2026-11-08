@@ -29,7 +29,7 @@ func _process(_delta):
 
 func open():
 	opened = true
-	sprite.play("open")
+	sprite.play("Open")
 	await sprite.animation_finished
 	Global.spawn_name = spawn_name
 	SceneTransition.change_scene(next_scene)

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://va4n1ylmnxbd"]
 
 [ext_resource type="PackedScene" uid="uid://bolgtjw6ucmdr" path="res://UI/ui_layer.tscn" id="1_3did2"]
+[ext_resource type="Script" uid="uid://c2kgb28wbkqq1" path="res://Areas/caves.gd" id="1_n2ijp"]
 [ext_resource type="PackedScene" uid="uid://dkxv0w0p8vm6x" path="res://Player/player.tscn" id="1_orut4"]
 [ext_resource type="Texture2D" uid="uid://varkw3lib7fd" path="res://Assets/Area1/ch_02_world_building_foundations/forgotten_forest_example_tileset.png" id="5_n2ijp"]
 [ext_resource type="Script" uid="uid://cyinjawt5h52h" path="res://Scripts/to_deep_cave.gd" id="6_1sdc7"]
@@ -1662,9 +1663,10 @@ sources/4 = SubResource("TileSetAtlasSource_g0gf4")
 size = Vector2(48, 56)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dqw1c"]
-size = Vector2(80, 58)
+size = Vector2(56, 58)
 
 [node name="Caves" type="Node2D" unique_id=1964911496]
+script = ExtResource("1_n2ijp")
 
 [node name="UiLayer" parent="." unique_id=886883731 instance=ExtResource("1_3did2")]
 
@@ -1706,13 +1708,16 @@ position = Vector2(104, 184)
 [node name="FromVolcano" type="Marker2D" parent="." unique_id=1941797035]
 position = Vector2(3584, 3048)
 
+[node name="FromDeepCave" type="Marker2D" parent="." unique_id=440491048]
+position = Vector2(112, 2936)
+
 [node name="ToDeepCave" type="Area2D" parent="." unique_id=134440697]
 script = ExtResource("6_1sdc7")
 next_scene = "uid://dba77qlg8xqsk"
 spawn_name = "FromCave2"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ToDeepCave" unique_id=2083385639]
-position = Vector2(40, 2923)
+position = Vector2(28, 2923)
 shape = SubResource("RectangleShape2D_dqw1c")
 
 [node name="BombBird" parent="." unique_id=1334491827 instance=ExtResource("7_n2ijp")]

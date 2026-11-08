@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://bnwusnj0jd8i8"]
+
+[ext_resource type="Texture2D" uid="uid://b55xun11dcegu" path="res://Assets/Animated Chests/Animated Chests/Chests.png" id="1_dm8fu"]
+[ext_resource type="Script" uid="uid://dpggdgtmb5ayl" path="res://chest/boss_chest.gd" id="1_e7occ"]
+[ext_resource type="Texture2D" uid="uid://bc40piho2ser6" path="res://Assets/key.png" id="2_e7occ"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2hojf"]
+atlas = ExtResource("1_dm8fu")
+region = Rect2(192, 128, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fm7v8"]
+atlas = ExtResource("1_dm8fu")
+region = Rect2(0, 160, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kdi10"]
+atlas = ExtResource("1_dm8fu")
+region = Rect2(48, 160, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q7j4a"]
+atlas = ExtResource("1_dm8fu")
+region = Rect2(96, 160, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sskds"]
+atlas = ExtResource("1_dm8fu")
+region = Rect2(144, 160, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gww1p"]
+atlas = ExtResource("1_dm8fu")
+region = Rect2(192, 160, 48, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dqw1c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2hojf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fm7v8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdi10")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q7j4a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sskds")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gww1p")
+}],
+"loop": 0,
+"name": &"bossChest",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g5j81"]
+size = Vector2(42, 34)
+
+[node name="BossChest" type="Area2D" unique_id=242351721]
+script = ExtResource("1_e7occ")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1757363258]
+sprite_frames = SubResource("SpriteFrames_dqw1c")
+animation = &"bossChest"
+frame = 1
+frame_progress = 0.4850077
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1816212917]
+position = Vector2(-11, 7)
+shape = SubResource("RectangleShape2D_g5j81")
+
+[node name="KeySprite" type="Sprite2D" parent="." unique_id=839972860]
+position = Vector2(-25.424797, 12.377363)
+rotation = 0.06806784
+scale = Vector2(0.9758222, 0.8781648)
+skew = 0.050614476
+texture = ExtResource("2_e7occ")

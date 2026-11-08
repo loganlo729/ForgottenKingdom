@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://boneiqgg7t64x"]
+
+[ext_resource type="Script" uid="uid://pkv1cai2iq2w" path="res://chest/torch.gd" id="1_2kj30"]
+[ext_resource type="Texture2D" uid="uid://varkw3lib7fd" path="res://Assets/Area1/ch_02_world_building_foundations/forgotten_forest_example_tileset.png" id="1_kv22i"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2kj30"]
+atlas = ExtResource("1_kv22i")
+region = Rect2(512, 256, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5rijf"]
+atlas = ExtResource("1_kv22i")
+region = Rect2(544, 256, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2n4mw"]
+atlas = ExtResource("1_kv22i")
+region = Rect2(576, 256, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wqgdg"]
+atlas = ExtResource("1_kv22i")
+region = Rect2(608, 256, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w321m"]
+atlas = ExtResource("1_kv22i")
+region = Rect2(640, 256, 32, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dqw1c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2kj30")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5rijf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2n4mw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wqgdg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w321m")
+}],
+"loop": 1,
+"name": &"light",
+"speed": 5.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_2kj30"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dqw1c"]
+gradient = SubResource("Gradient_2kj30")
+
+[node name="Torch" type="Area2D" unique_id=1394414561]
+script = ExtResource("1_2kj30")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=993723073]
+sprite_frames = SubResource("SpriteFrames_dqw1c")
+animation = &"light"
+autoplay = "light"
+frame = 4
+frame_progress = 1.0
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1881464184]
+position = Vector2(0, -40)
+color = Color(1, 0.6039216, 0.23529412, 1)
+energy = 3.32
+texture = SubResource("GradientTexture2D_dqw1c")
+texture_scale = 1.38

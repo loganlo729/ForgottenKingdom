@@ -90,7 +90,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_4ju7i")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"Open",
 "speed": 5.0
 }]
@@ -100,6 +100,7 @@ size = Vector2(232, 202)
 
 [node name="BigDoor" type="StaticBody2D" unique_id=1285890968]
 script = ExtResource("1_kxroo")
+next_scene = "uid://curdmhnntgn44"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=464763568]
 position = Vector2(88, 92)
