@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://b1ed8br8d5nfn" path="res://Scripts/VolcanoEnter.gd" id="7_3did2"]
 [ext_resource type="PackedScene" uid="uid://b2cls4cd6d2r8" path="res://Enemy/bomb_bird.tscn" id="7_n2ijp"]
 [ext_resource type="PackedScene" uid="uid://6a3vbrpyab6h" path="res://Enemy/boar.tscn" id="8_hcvdq"]
+[ext_resource type="PackedScene" uid="uid://bml3uqy6lo5ew" path="res://Player/UpgradePickup.tscn" id="10_hcvdq"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3did2"]
 
@@ -1746,3 +1747,8 @@ position = Vector2(2822, 1888)
 
 [node name="Boar4" parent="." unique_id=806281960 instance=ExtResource("8_hcvdq")]
 position = Vector2(910, 3211)
+
+[node name="UpgradePickup" parent="." unique_id=702739754 instance=ExtResource("10_hcvdq")]
+position = Vector2(288, 165)
+upgrade_type = 3
+custom_text = "Wall Jump"
