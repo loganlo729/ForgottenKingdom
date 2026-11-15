@@ -1,0 +1,110 @@
+[gd_scene format=3 uid="uid://lwrimac50inn"]
+
+[ext_resource type="Script" uid="uid://dkmtck4g1gt61" path="res://Scripts/doorto_village.gd" id="1_e5vl7"]
+[ext_resource type="Texture2D" uid="uid://c43c8d8m4a4l3" path="res://Assets/stone_gate.png" id="2_pey5u"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2t7id"]
+atlas = ExtResource("2_pey5u")
+region = Rect2(0, 160, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0k6hm"]
+atlas = ExtResource("2_pey5u")
+region = Rect2(160, 160, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_21up1"]
+atlas = ExtResource("2_pey5u")
+region = Rect2(320, 160, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nvceq"]
+atlas = ExtResource("2_pey5u")
+region = Rect2(480, 160, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_osb6e"]
+atlas = ExtResource("2_pey5u")
+region = Rect2(0, 320, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jctuc"]
+atlas = ExtResource("2_pey5u")
+region = Rect2(160, 320, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xesvi"]
+atlas = ExtResource("2_pey5u")
+region = Rect2(320, 320, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_72rck"]
+atlas = ExtResource("2_pey5u")
+region = Rect2(480, 320, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hw4iy"]
+atlas = ExtResource("2_pey5u")
+region = Rect2(0, 480, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_snkda"]
+atlas = ExtResource("2_pey5u")
+region = Rect2(160, 480, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vdd4a"]
+atlas = ExtResource("2_pey5u")
+region = Rect2(320, 480, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wcsug"]
+atlas = ExtResource("2_pey5u")
+region = Rect2(480, 480, 160, 160)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dqw1c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2t7id")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0k6hm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_21up1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nvceq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_osb6e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jctuc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xesvi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_72rck")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hw4iy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_snkda")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vdd4a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wcsug")
+}],
+"loop": 0,
+"name": &"DoorToVillage",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g5j81"]
+size = Vector2(74, 101)
+
+[node name="DoortoVillage" type="Area2D" unique_id=1128064554]
+script = ExtResource("1_e5vl7")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2057643204]
+sprite_frames = SubResource("SpriteFrames_dqw1c")
+animation = &"DoorToVillage"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=648739957]
+position = Vector2(-16, 10.5)
+shape = SubResource("RectangleShape2D_g5j81")

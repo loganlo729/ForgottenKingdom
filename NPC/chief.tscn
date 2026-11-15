@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://bp4yjt0yly47i"]
+
+[ext_resource type="Script" uid="uid://dqthiwooiu228" path="res://NPC/chief.gd" id="1_nncle"]
+[ext_resource type="Texture2D" uid="uid://bb3fvbcs55gy5" path="res://Assets/Area1/GothicVania-town-files/PNG/spritesheets/oldman-idle.png" id="2_1xao1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d83as"]
+atlas = ExtResource("2_1xao1")
+region = Rect2(170, 0, 34, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ux5an"]
+atlas = ExtResource("2_1xao1")
+region = Rect2(204, 0, 34, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b5k7y"]
+atlas = ExtResource("2_1xao1")
+region = Rect2(238, 0, 34, 42)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dqw1c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d83as")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ux5an")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b5k7y")
+}],
+"loop": 0,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g5j81"]
+size = Vector2(26, 48)
+
+[node name="Chief" type="Area2D" unique_id=1766720603]
+script = ExtResource("1_nncle")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1119158636]
+sprite_frames = SubResource("SpriteFrames_dqw1c")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1512542257]
+position = Vector2(3, 0)
+shape = SubResource("RectangleShape2D_g5j81")
+
+[node name="Prompt" type="Label" parent="." unique_id=602150722]
+offset_left = 16.0
+offset_top = -24.0
+offset_right = 80.0
+
+[node name="DialogueBox" type="CanvasLayer" parent="." unique_id=579598884]
+
+[node name="Choices" type="VBoxContainer" parent="DialogueBox" unique_id=1944059504]
+custom_minimum_size = Vector2(500, 100)
+custom_maximum_size = Vector2(-1, 150)
+offset_left = 16.0
+offset_top = -24.0
+offset_right = 80.0
+
+[node name="Panel" type="Panel" parent="DialogueBox" unique_id=173227911]
+custom_minimum_size = Vector2(500, 100)
+custom_maximum_size = Vector2(-1, 150)
+offset_right = 500.0
+offset_bottom = 100.0
+
+[node name="Text" type="Label" parent="DialogueBox/Panel" unique_id=1548841593]
+layout_mode = 0
+offset_right = 72.0
+offset_bottom = 40.0
+
+[node name="Hint" type="Label" parent="DialogueBox/Panel" unique_id=1398184277]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0

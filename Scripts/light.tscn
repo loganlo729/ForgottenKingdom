@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://colg132ikbatu"]
+
+[ext_resource type="Texture2D" uid="uid://bawpdpmeqfg54" path="res://Assets/Area1/GothicVania-town-files/PNG/environment/props-sliced/street-lamp.png" id="1_hepd3"]
+
+[sub_resource type="Gradient" id="Gradient_govv2"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dqw1c"]
+gradient = SubResource("Gradient_govv2")
+fill_from = Vector2(0.508547, 1)
+fill_to = Vector2(0.5, 0.017094018)
+
+[node name="Light" type="Area2D" unique_id=660566640]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=560426091]
+texture = ExtResource("1_hepd3")
+
+[node name="PointLight2D" type="PointLight2D" parent="Sprite2D" unique_id=1923661451]
+position = Vector2(0, -40)
+scale = Vector2(3.0587122, 2.5757577)
+color = Color(1, 1, 0.34901962, 1)
+energy = 3.73
+texture = SubResource("GradientTexture2D_dqw1c")
+texture_scale = 1.65
