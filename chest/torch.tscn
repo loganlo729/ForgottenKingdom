@@ -42,7 +42,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_w321m")
 }],
 "loop": 1,
-"name": &"light",
+"name": &"torch",
 "speed": 5.0
 }]
 
@@ -56,10 +56,8 @@ script = ExtResource("1_2kj30")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=993723073]
 sprite_frames = SubResource("SpriteFrames_dqw1c")
-animation = &"light"
-autoplay = "light"
-frame = 4
-frame_progress = 1.0
+animation = &"torch"
+autoplay = "torch"
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=1881464184]
 position = Vector2(0, -40)

@@ -1746,3 +1746,6 @@ position = Vector2(2822, 1888)
 
 [node name="Boar4" parent="." unique_id=806281960 instance=ExtResource("8_hcvdq")]
 position = Vector2(910, 3211)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=550084166]
+color = Color(0.22430414, 0.22430411, 0.22430405, 1)
