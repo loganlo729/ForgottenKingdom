@@ -7,6 +7,7 @@ var has_air_dash: bool = false
 var has_double_jump: bool = false
 var has_long_sword: bool = false
 var has_wall_jump: bool = false
+var has_torchy: bool = false
 
 func unlock(upgrade_name: String) -> void:
 	match upgrade_name:
@@ -17,6 +18,8 @@ func unlock(upgrade_name: String) -> void:
 		"wall_jump":
 			has_wall_jump = true
 		"long_sword":
+			has_long_sword = true
+		"torchy":
 			has_long_sword = true
 		_:
 			push_warning("Unknown upgrade: " + upgrade_name)

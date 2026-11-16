@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bolgtjw6ucmdr" path="res://UI/ui_layer.tscn" id="1_3did2"]
 [ext_resource type="Script" uid="uid://c2kgb28wbkqq1" path="res://Areas/caves.gd" id="1_n2ijp"]
-[ext_resource type="PackedScene" uid="uid://dkxv0w0p8vm6x" path="res://Player/player.tscn" id="1_orut4"]
+[ext_resource type="PackedScene" uid="uid://dkxv0w0p8vm6x" path="res://Player/Player.tscn" id="1_orut4"]
 [ext_resource type="Texture2D" uid="uid://varkw3lib7fd" path="res://Assets/Area1/ch_02_world_building_foundations/forgotten_forest_example_tileset.png" id="5_n2ijp"]
 [ext_resource type="Script" uid="uid://cyinjawt5h52h" path="res://Scripts/to_deep_cave.gd" id="6_1sdc7"]
 [ext_resource type="Texture2D" uid="uid://1ftkv0pb1mpt" path="res://Assets/Cave Free/Demo/Tiles.png" id="6_trsk6"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://b2cls4cd6d2r8" path="res://Enemy/bomb_bird.tscn" id="7_n2ijp"]
 [ext_resource type="PackedScene" uid="uid://6a3vbrpyab6h" path="res://Enemy/boar.tscn" id="8_hcvdq"]
 [ext_resource type="PackedScene" uid="uid://bml3uqy6lo5ew" path="res://Player/UpgradePickup.tscn" id="10_hcvdq"]
+[ext_resource type="Texture2D" uid="uid://67xbmewqx20r" path="res://Assets/Torch/Torch_Sheet.png" id="11_qptgo"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3did2"]
 
@@ -1666,6 +1667,66 @@ size = Vector2(48, 56)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dqw1c"]
 size = Vector2(56, 58)
 
+[sub_resource type="Gradient" id="Gradient_qptgo"]
+offsets = PackedFloat32Array(0, 0.014150944, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0.047169812, 0.047169812, 0.047169812, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bl8mu"]
+gradient = SubResource("Gradient_qptgo")
+fill = 1
+fill_from = Vector2(0.5, 0.3888889)
+fill_to = Vector2(0.6495727, 0.07692308)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gkmc7"]
+atlas = ExtResource("11_qptgo")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g0gf4"]
+atlas = ExtResource("11_qptgo")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1daa5"]
+atlas = ExtResource("11_qptgo")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x8okq"]
+atlas = ExtResource("11_qptgo")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vucsu"]
+atlas = ExtResource("11_qptgo")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_76oe4"]
+atlas = ExtResource("11_qptgo")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dr75u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gkmc7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g0gf4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1daa5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x8okq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vucsu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_76oe4")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 3.0
+}]
+
 [node name="Caves" type="Node2D" unique_id=1964911496]
 script = ExtResource("1_n2ijp")
 
@@ -1750,5 +1811,22 @@ position = Vector2(910, 3211)
 
 [node name="UpgradePickup" parent="." unique_id=702739754 instance=ExtResource("10_hcvdq")]
 position = Vector2(288, 165)
-upgrade_type = 3
-custom_text = "Wall Jump"
+upgrade_type = 4
+custom_text = "Torchy"
+tutorial_title = ""
+tutorial_text = ""
+tutorial_action = &""
+
+[node name="PointLight2D" type="PointLight2D" parent="UpgradePickup" unique_id=663839522]
+position = Vector2(-2, 3)
+scale = Vector2(3.125, 2.828125)
+energy = 1.9
+texture = SubResource("GradientTexture2D_bl8mu")
+
+[node name="AnimatedSprite2D" parent="UpgradePickup" index="1" unique_id=528830308]
+sprite_frames = SubResource("SpriteFrames_dr75u")
+
+[node name="Label" parent="UpgradePickup" index="3" unique_id=879450752]
+text = "Torchy"
+
+[editable path="UpgradePickup"]
