@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://c280ytairxod5" path="res://Assets/Knight 2D Pixel Art/Knight 2D Pixel Art/Sprites/without_outline/DEFEND.png" id="5_j23h2"]
 [ext_resource type="Texture2D" uid="uid://baceodbxdd5kt" path="res://Assets/bullet/bullet.png" id="10_x3vf3"]
 [ext_resource type="Texture2D" uid="uid://5e2q73nmnm4p" path="res://Assets/bullet/nothing.png" id="11_apopc"]
+[ext_resource type="Texture2D" uid="uid://67xbmewqx20r" path="res://Assets/Torch/Torch_Sheet.png" id="12_5wa8t"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gv3fu"]
 atlas = ExtResource("2_6ysni")
@@ -515,6 +516,65 @@ height = 34.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bl8mu"]
 size = Vector2(15.405405, 34)
 
+[sub_resource type="Gradient" id="Gradient_apopc"]
+offsets = PackedFloat32Array(0.20689656, 0.7335423, 0.8025078, 0.8557994)
+colors = PackedColorArray(1, 1, 1, 1, 0.088269174, 0.088269174, 0.088269174, 1, 0.037617564, 0.037617564, 0.037617564, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_apopc"]
+gradient = SubResource("Gradient_apopc")
+fill = 1
+fill_from = Vector2(0.52991456, 0.49287748)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1a3po"]
+atlas = ExtResource("12_5wa8t")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r04tr"]
+atlas = ExtResource("12_5wa8t")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vuo2u"]
+atlas = ExtResource("12_5wa8t")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8agqw"]
+atlas = ExtResource("12_5wa8t")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ustk3"]
+atlas = ExtResource("12_5wa8t")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ylbe"]
+atlas = ExtResource("12_5wa8t")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gpweu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1a3po")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r04tr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vuo2u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8agqw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ustk3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ylbe")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="Player" type="CharacterBody2D" unique_id=1904947197 groups=["Player"]]
 collision_layer = 3
 collision_mask = 7
@@ -557,3 +617,18 @@ monitorable = false
 position = Vector2(62.125, 0)
 scale = Vector2(6.475, 1)
 shape = SubResource("RectangleShape2D_bl8mu")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=264930097]
+position = Vector2(72, -17)
+scale = Vector2(3.0937498, 2.5703113)
+color = Color(1, 1, 0.44313726, 0.19215687)
+energy = 5.27
+texture = SubResource("GradientTexture2D_apopc")
+
+[node name="TorchSprite" type="AnimatedSprite2D" parent="." unique_id=873676638]
+visible = false
+position = Vector2(65, -22)
+rotation = 0.15707964
+scale = Vector2(0.71875, 0.71875)
+skew = 0.0715585
+sprite_frames = SubResource("SpriteFrames_gpweu")

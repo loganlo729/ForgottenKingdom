@@ -1,4 +1,3 @@
-
 extends CharacterBody2D
 class_name Player
 
@@ -41,9 +40,11 @@ const UPGRADED_JUMPS = 2
 const NORMAL_SWORD_RANGE = 1.0
 const LONG_SWORD_RANGE = 1.5
 
-# GUARD
+# GUARD / PERFECT PARRY
 const GUARD_DURATION = 0.3
 const GUARD_COOLDOWN = 0.5
+const PARRY_WINDOW = 0.18
+const PARRY_FEEDBACK_DURATION = 0.25
 
 # KEYS
 var hasKeys = [false, false]
@@ -53,6 +54,11 @@ var hasKeys = [false, false]
 @onready var bullet_sprite: AnimatedSprite2D = $AnimatedSprite2D/Bullet
 @onready var attack_box: Area2D = $BaseAttackBox
 @onready var ranged_attack_box: Area2D = $RangedAttackBox
+@onready var flashlight_light: PointLight2D = $PointLight2D
+@onready var torch_sprite: CanvasItem = $TorchSprite
+
+# FLASHLIGHT
+var flashlight_on: bool = false
 
 # DASH VARIABLES
 var is_dashing = false
@@ -68,6 +74,7 @@ var attack_time_left = 0.0
 var combo_count = 0
 var combo_time_left = 0.0
 var has_air_attacked = false
+var melee_hit_targets: Array[Node2D] = []
 
 # RANGED VARIABLES
 var is_ranged_attacking = false
@@ -80,6 +87,8 @@ var jumps_left = 0
 var is_guarding = false
 var guard_time_left = 0.0
 var guard_cooldown_left = 0.0
+var parry_window_left: float = 0.0
+var parry_feedback_left: float = 0.0
 
 
 # --------------------------------
@@ -87,6 +96,9 @@ var guard_cooldown_left = 0.0
 # --------------------------------
 
 func _ready() -> void:
+	# Allow the sword to detect bosses on collision layer 5.
+	attack_box.set_collision_mask_value(5, true)
+	
 	jumps_left = get_max_jumps()
 
 	if not Upgrades.upgrade_unlocked.is_connected(
@@ -118,6 +130,10 @@ func _ready() -> void:
 
 	attack_box.monitoring = false
 	ranged_attack_box.monitoring = false
+
+	# Flashlight starts turned off.
+	flashlight_light.enabled = flashlight_on
+	torch_sprite.visible = flashlight_on
 
 
 # --------------------------------
@@ -162,25 +178,22 @@ func _on_upgrade_unlocked(upgrade_name: String) -> void:
 # --------------------------------
 
 func _on_attack_box_body_entered(body: Node2D) -> void:
-	if not is_attacking:
+	try_melee_hit(body)
+
+
+func try_melee_hit(body: Node2D) -> void:
+	if not is_attacking or body in melee_hit_targets:
 		return
 
-	if body.is_in_group("Enemies") and body.has_method(
-		"take_damage"
-	):
+	if body.is_in_group("Enemies") and body.has_method("take_damage"):
+		melee_hit_targets.append(body)
+
 		var knockback_direction = (
 			Vector2.LEFT if sprite.flip_h else Vector2.RIGHT
 		)
 
-		var damage_to_deal = 1
-
-		if combo_count == 3:
-			damage_to_deal = 2
-
-		body.take_damage(
-			damage_to_deal,
-			knockback_direction
-		)
+		var damage_to_deal = 2 if combo_count == 3 else 1
+		body.take_damage(damage_to_deal, knockback_direction)
 
 
 # --------------------------------
@@ -188,6 +201,11 @@ func _on_attack_box_body_entered(body: Node2D) -> void:
 # --------------------------------
 
 func _physics_process(delta: float) -> void:
+	# Toggle flashlight and torch sprite together.
+	if Input.is_action_just_pressed("flashlight"):
+		flashlight_on = not flashlight_on
+		flashlight_light.enabled = flashlight_on
+		torch_sprite.visible = flashlight_on
 
 	var on_floor = is_on_floor()
 	var on_wall = is_on_wall()
@@ -360,8 +378,12 @@ func _physics_process(delta: float) -> void:
 				velocity.x = 0.0
 
 	# --------------------------------
-	# GUARD
+	# GUARD / PERFECT PARRY
 	# --------------------------------
+
+	parry_window_left = max(parry_window_left - delta, 0.0)
+	parry_feedback_left = max(parry_feedback_left - delta, 0.0)
+	guard_cooldown_left = max(guard_cooldown_left - delta, 0.0)
 
 	if is_guarding:
 		guard_time_left -= delta
@@ -369,16 +391,11 @@ func _physics_process(delta: float) -> void:
 		if not Input.is_action_pressed("guard") \
 		or guard_time_left <= 0.0:
 			is_guarding = false
+			parry_window_left = 0.0
 			guard_cooldown_left = GUARD_COOLDOWN
 
-	else:
-		if guard_cooldown_left > 0.0:
-			guard_cooldown_left = max(
-				guard_cooldown_left - delta,
-				0.0
-			)
-
-	if Input.is_action_pressed("guard") \
+	# Just pressed: holding Guard cannot auto-repeat it.
+	if Input.is_action_just_pressed("guard") \
 	and not is_guarding \
 	and guard_cooldown_left <= 0.0 \
 	and not is_dashing \
@@ -387,6 +404,7 @@ func _physics_process(delta: float) -> void:
 
 		is_guarding = true
 		guard_time_left = GUARD_DURATION
+		parry_window_left = PARRY_WINDOW
 
 	# --------------------------------
 	# COMBO ATTACK
@@ -429,6 +447,7 @@ func _physics_process(delta: float) -> void:
 			if not on_floor:
 				has_air_attacked = true
 
+			melee_hit_targets.clear()
 			attack_box.monitoring = true
 
 	# --------------------------------
@@ -514,7 +533,13 @@ func _physics_process(delta: float) -> void:
 	# ANIMATIONS
 	# --------------------------------
 
-	if is_attacking:
+	if parry_feedback_left > 0.0:
+		if sprite.sprite_frames.has_animation("parry"):
+			sprite.play("parry")
+		else:
+			sprite.play("guard")
+
+	elif is_attacking:
 		sprite.play("attack" + str(combo_count))
 
 	elif is_dashing:
@@ -546,39 +571,64 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
+	# Body-entered alone misses enemies already inside
+	# the sword hitbox when a swing begins.
+	if is_attacking:
+		for body in attack_box.get_overlapping_bodies():
+			try_melee_hit(body)
+
 
 # --------------------------------
 # DAMAGE / HEALTH
 # --------------------------------
 
-func take_damage(amount: int, source_position: Vector2) -> void:
+func take_damage(
+	amount: int,
+	source_position: Vector2,
+	attacker: Node = null
+) -> void:
+	# Existing dash and hit-stun immunity.
 	if is_hit or is_dashing:
 		return
 
-	# CHECK GUARD
+	# A guard only protects the side the player faces.
 	if is_guarding:
-		var enemy_is_left = (
-			source_position.x < global_position.x
+		var enemy_is_left = source_position.x < global_position.x
+		var facing_enemy = (
+			(sprite.flip_h and enemy_is_left)
+			or (not sprite.flip_h and not enemy_is_left)
 		)
 
-		if (sprite.flip_h and enemy_is_left) \
-		or (not sprite.flip_h and not enemy_is_left):
+		if facing_enemy:
+			# Perfect parry: only bosses/enemies with an
+			# on_parried() method can be stunned.
+			if parry_window_left > 0.0 \
+			and is_instance_valid(attacker) \
+			and attacker.has_method("on_parried"):
+				is_guarding = false
+				guard_time_left = 0.0
+				parry_window_left = 0.0
+				guard_cooldown_left = GUARD_COOLDOWN
+				parry_feedback_left = PARRY_FEEDBACK_DURATION
+				velocity.x = 0.0
 
+				attacker.on_parried()
+				print("PERFECT PARRY!")
+				return
+
+			# Regular block: no health lost, but no stun.
 			var block_knockback = (
 				Vector2.RIGHT if enemy_is_left
 				else Vector2.LEFT
 			)
-
 			velocity = block_knockback * 150.0
 			return
 
-	# APPLY DAMAGE
+	# Apply damage.
 	player_health -= amount
 	is_hit = true
-
 	health_changed.emit(player_health, max_health)
 
-	# KNOCKBACK
 	var knockback_dir = (
 		Vector2.RIGHT
 		if source_position.x < global_position.x
@@ -588,16 +638,17 @@ func take_damage(amount: int, source_position: Vector2) -> void:
 	velocity = knockback_dir * 300.0
 	velocity.y = -150.0
 
-	# DAMAGE FLASH
 	sprite.modulate = Color(1, 0.3, 0.3)
-
 	await get_tree().create_timer(hit_stun_time).timeout
+
+	if not is_inside_tree():
+		return
 
 	is_hit = false
 	sprite.modulate = Color.WHITE
 
 	if player_health <= 0:
-		get_tree().reload_current_scene()
+		get_tree().call_deferred("reload_current_scene")
 
 
 # --------------------------------

@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cw1h38qxj14x4" path="res://chest/chest.tscn" id="4_xkpld"]
 [ext_resource type="Script" uid="uid://brbnpeg8dlaq2" path="res://Scripts/ChurchExit.gd" id="6_gdfvj"]
 [ext_resource type="PackedScene" uid="uid://6a3vbrpyab6h" path="res://Enemy/boar.tscn" id="7_gdfvj"]
+[ext_resource type="PackedScene" uid="uid://bml3uqy6lo5ew" path="res://Player/UpgradePickup.tscn" id="7_wvyxl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fxxpr"]
 texture = ExtResource("1_tbo14")
@@ -3664,6 +3665,11 @@ next_scene = "uid://oej7tu3r8j32"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ChurchExit" unique_id=864316836]
 position = Vector2(239, 717)
 shape = SubResource("RectangleShape2D_7ahkn")
+
+[node name="UpgradePickup" parent="ChurchExit" unique_id=702739754 instance=ExtResource("7_wvyxl")]
+position = Vector2(2105, 629)
+upgrade_type = 2
+custom_text = "Long Sword"
 
 [node name="FromTown" type="Marker2D" parent="." unique_id=635215617]
 position = Vector2(272, 752)

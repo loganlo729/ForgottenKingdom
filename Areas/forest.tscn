@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://dnc4vnffotvcn" path="res://Scripts/door.gd" id="8_5qot8"]
 [ext_resource type="Script" uid="uid://b32eysbimpf7y" path="res://Scripts/door2Cave.gd" id="12_yblu2"]
 [ext_resource type="FontFile" uid="uid://bhth8caglrb0a" path="res://UI/Isometra-Regular.ttf" id="13_6bqod"]
+[ext_resource type="PackedScene" uid="uid://bml3uqy6lo5ew" path="res://Player/UpgradePickup.tscn" id="14_ccq44"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lnf62"]
 texture = ExtResource("3_6jdmn")
@@ -2505,3 +2506,7 @@ offset_right = 3574.0
 offset_bottom = 490.0
 theme_override_fonts/font = ExtResource("13_6bqod")
 text = "Press E to interact!"
+
+[node name="UpgradePickup" parent="." unique_id=702739754 instance=ExtResource("14_ccq44")]
+position = Vector2(415, 714)
+custom_text = "Double Jump"

@@ -1,12 +1,13 @@
 [gd_scene format=3 uid="uid://cfcsvkpxbod5t"]
 
-[ext_resource type="PackedScene" uid="uid://dkxv0w0p8vm6x" path="res://Player/player.tscn" id="1_mcwle"]
+[ext_resource type="PackedScene" uid="uid://dkxv0w0p8vm6x" path="res://Player/Player.tscn" id="1_mcwle"]
 [ext_resource type="PackedScene" uid="uid://bolgtjw6ucmdr" path="res://UI/ui_layer.tscn" id="2_oovnl"]
 [ext_resource type="Texture2D" uid="uid://bqmkurpx03dih" path="res://Assets/images/Spritesheet_tileset.png" id="3_1d5kq"]
 [ext_resource type="Texture2D" uid="uid://1ftkv0pb1mpt" path="res://Assets/Cave Free/Demo/Tiles.png" id="4_m0g6b"]
 [ext_resource type="Script" uid="uid://cy2m8xwxs8bp0" path="res://Scripts/Lava.gd" id="4_uqkp5"]
 [ext_resource type="Texture2D" uid="uid://b8cdlbu1siybl" path="res://Assets/gothicvania church files/Assets/ENVIRONMENT/tileset.png" id="6_4qxmv"]
 [ext_resource type="Script" uid="uid://buhq5eoy7snf2" path="res://Scripts/volcano_exit.gd" id="6_m0g6b"]
+[ext_resource type="PackedScene" uid="uid://bml3uqy6lo5ew" path="res://Player/UpgradePickup.tscn" id="8_qwdvt"]
 
 [sub_resource type="Gradient" id="Gradient_4qxmv"]
 
@@ -10412,3 +10413,11 @@ shape = SubResource("RectangleShape2D_g5j81")
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=2074406725]
 position = Vector2(88, -40)
 color = Color(0.38170326, 0.38170326, 0.3817031, 1)
+
+[node name="UpgradePickup" parent="." unique_id=702739754 instance=ExtResource("8_qwdvt")]
+position = Vector2(4838, -62)
+upgrade_type = 3
+custom_text = "Wall Jump"
+tutorial_title = ""
+tutorial_text = ""
+tutorial_action = &""

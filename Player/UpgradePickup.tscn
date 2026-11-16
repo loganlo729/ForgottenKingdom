@@ -41,10 +41,13 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fhlp7"]
-size = Vector2(10, 12)
+size = Vector2(49, 49)
 
 [node name="UpgradePickup" type="Area2D" unique_id=702739754]
 script = ExtResource("1_5e1uk")
+tutorial_title = null
+tutorial_text = null
+tutorial_action = null
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=528830308]
 sprite_frames = SubResource("SpriteFrames_fhlp7")
@@ -60,5 +63,5 @@ offset_bottom = -5.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_skdm0")
 theme_override_font_sizes/font_size = 5
-text = "Double Jump"
+text = "Default Text"
 horizontal_alignment = 1
