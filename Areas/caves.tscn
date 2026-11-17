@@ -1809,10 +1809,8 @@ position = Vector2(2822, 1888)
 [node name="Boar4" parent="." unique_id=806281960 instance=ExtResource("8_hcvdq")]
 position = Vector2(910, 3211)
 
-<<<<<<< HEAD
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=550084166]
 color = Color(0.22430414, 0.22430411, 0.22430405, 1)
-=======
 [node name="UpgradePickup" parent="." unique_id=702739754 instance=ExtResource("10_hcvdq")]
 position = Vector2(288, 165)
 upgrade_type = 4
@@ -1834,4 +1832,3 @@ sprite_frames = SubResource("SpriteFrames_dr75u")
 text = "Torchy"
 
 [editable path="UpgradePickup"]
->>>>>>> 81ae776e6ee0aa2b665804fb88c4869c9c232ca6
