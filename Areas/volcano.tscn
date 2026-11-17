@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cfcsvkpxbod5t"]
 
-[ext_resource type="PackedScene" uid="uid://dkxv0w0p8vm6x" path="res://Player/Player.tscn" id="1_mcwle"]
+[ext_resource type="PackedScene" uid="uid://dkxv0w0p8vm6x" path="res://Player/player.tscn" id="1_mcwle"]
 [ext_resource type="PackedScene" uid="uid://bolgtjw6ucmdr" path="res://UI/ui_layer.tscn" id="2_oovnl"]
 [ext_resource type="Texture2D" uid="uid://bqmkurpx03dih" path="res://Assets/images/Spritesheet_tileset.png" id="3_1d5kq"]
 [ext_resource type="Texture2D" uid="uid://1ftkv0pb1mpt" path="res://Assets/Cave Free/Demo/Tiles.png" id="4_m0g6b"]
@@ -10379,7 +10379,7 @@ position = Vector2(88, 376)
 script = ExtResource("4_uqkp5")
 
 [node name="PointLight2D" type="PointLight2D" parent="Lava" unique_id=1838400942]
-position = Vector2(2896, -272)
+position = Vector2(2657, -1064)
 scale = Vector2(33.63747, 14.03125)
 color = Color(1, 0.41568628, 0.101960786, 1)
 energy = 2.33
@@ -10387,7 +10387,7 @@ texture = SubResource("GradientTexture2D_dqw1c")
 texture_scale = 4.11
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Lava" unique_id=1096342442]
-position = Vector2(1712, 56)
+position = Vector2(1714, 9)
 shape = SubResource("RectangleShape2D_dqw1c")
 
 [node name="TileMap" type="TileMap" parent="." unique_id=1952549446]

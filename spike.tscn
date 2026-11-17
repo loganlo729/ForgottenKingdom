@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://bqjge0kfc0k6g"]
+
+[ext_resource type="Texture2D" uid="uid://d35vw5od2n8mw" path="res://Assets/Cave Free/Demo/Spikes.png" id="1_8ryga"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o5s4h"]
+radius = 9.0
+height = 28.0
+
+[node name="Spike" type="Area2D" unique_id=1968868562]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1672065144]
+position = Vector2(10.000001, 18)
+scale = Vector2(2.25, 2.3124998)
+texture = ExtResource("1_8ryga")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D" unique_id=1809431452]
+position = Vector2(-3.555556, -2.1621625)
+scale = Vector2(0.44444445, 0.43243247)
+shape = SubResource("CapsuleShape2D_o5s4h")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=1403942916]
+position = Vector2(20, 28)
+shape = SubResource("CapsuleShape2D_o5s4h")

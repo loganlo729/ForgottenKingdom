@@ -3323,7 +3323,7 @@ position = Vector2(5456, 0)
 position = Vector2(432, -8)
 
 [node name="NPC1" parent="background/Light2" unique_id=2018652998 instance=ExtResource("8_gcb0a")]
-position = Vector2(800, 24)
+position = Vector2(871, 24)
 
 [node name="Well" type="Sprite2D" parent="background" unique_id=1960206185]
 position = Vector2(2032, 288)
