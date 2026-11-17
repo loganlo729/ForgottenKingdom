@@ -2481,6 +2481,7 @@ shape = SubResource("RectangleShape2D_7ahkn")
 
 [node name="Door2" type="Area2D" parent="." unique_id=1135186079]
 script = ExtResource("12_yblu2")
+next_scene = "uid://va4n1ylmnxbd"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door2" unique_id=3983701]
 position = Vector2(3012, 824)
