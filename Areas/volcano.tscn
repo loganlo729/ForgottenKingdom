@@ -10379,7 +10379,7 @@ position = Vector2(88, 376)
 script = ExtResource("4_uqkp5")
 
 [node name="PointLight2D" type="PointLight2D" parent="Lava" unique_id=1838400942]
-position = Vector2(2896, -272)
+position = Vector2(2657, -1064)
 scale = Vector2(33.63747, 14.03125)
 color = Color(1, 0.41568628, 0.101960786, 1)
 energy = 2.33

@@ -1685,7 +1685,7 @@ layer_0/tile_data = PackedInt32Array(1179723, 262144, 20, 1245259, 262144, 21, 1
 position = Vector2(-2040, -1320)
 
 [node name="Player" parent="." unique_id=1904947197 instance=ExtResource("1_npmc0")]
-position = Vector2(1124, 450)
+position = Vector2(1863, 398)
 
 [node name="ToCaves" type="Area2D" parent="." unique_id=1073714406]
 script = ExtResource("7_3m33n")
