@@ -1674,6 +1674,7 @@ position = Vector2(384, 560)
 
 [node name="BigDoor" parent="." unique_id=1285890968 instance=ExtResource("3_o2jt4")]
 position = Vector2(88, 392)
+next_scene = "uid://u6sg5krlmcie"
 
 [node name="TileMap" type="TileMap" parent="." unique_id=721291934]
 tile_set = SubResource("TileSet_dqw1c")
