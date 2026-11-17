@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bk6smis765iaa" path="res://Assets/Area1/Legacy-Fantasy_-_High_Forest_2.0/Legacy-Fantasy - High Forest 2.3/Assets/Interior-01.png" id="7_n5vnd"]
 [ext_resource type="Texture2D" uid="uid://bp7l0rre57kdb" path="res://Assets/Area1/Legacy-Fantasy_-_High_Forest_2.0/Legacy-Fantasy - High Forest 2.3/Assets/Hive.png" id="8_saj0w"]
 [ext_resource type="Texture2D" uid="uid://varkw3lib7fd" path="res://Assets/Area1/ch_02_world_building_foundations/forgotten_forest_example_tileset.png" id="9_a7h3t"]
-[ext_resource type="PackedScene" uid="uid://dkxv0w0p8vm6x" path="res://Player/Player.tscn" id="10_4j6mb"]
+[ext_resource type="PackedScene" uid="uid://dkxv0w0p8vm6x" path="res://Player/player.tscn" id="10_4j6mb"]
 [ext_resource type="Script" uid="uid://cw075rjamqtc1" path="res://Scripts/forest_drop.gd" id="11_vp7d5"]
 [ext_resource type="PackedScene" uid="uid://6a3vbrpyab6h" path="res://Enemy/boar.tscn" id="12_hvldc"]
 [ext_resource type="PackedScene" uid="uid://b2cls4cd6d2r8" path="res://Enemy/bomb_bird.tscn" id="13_mof4q"]
@@ -3505,6 +3505,7 @@ shape = SubResource("RectangleShape2D_5vuuj")
 
 [node name="DemonBoss" parent="." unique_id=408506863 instance=ExtResource("15_pfoja")]
 position = Vector2(1026, 618)
+script = null
 
 [node name="DemonBoss2" parent="." unique_id=2048631262 instance=ExtResource("16_27h66")]
-position = Vector2(1155, 594)
+position = Vector2(1154, 612)

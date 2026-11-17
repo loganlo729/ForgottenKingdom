@@ -3670,9 +3670,12 @@ shape = SubResource("RectangleShape2D_7ahkn")
 position = Vector2(2105, 629)
 upgrade_type = 2
 custom_text = "Long Sword"
+tutorial_title = ""
+tutorial_text = ""
+tutorial_action = &""
 
 [node name="FromTown" type="Marker2D" parent="." unique_id=635215617]
 position = Vector2(272, 752)
 
 [node name="Boar" parent="." unique_id=1556071156 instance=ExtResource("7_gdfvj")]
-position = Vector2(584, 734)
+position = Vector2(539, 737)
