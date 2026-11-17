@@ -1674,6 +1674,7 @@ position = Vector2(384, 560)
 
 [node name="BigDoor" parent="." unique_id=1285890968 instance=ExtResource("3_o2jt4")]
 position = Vector2(88, 392)
+next_scene = "uid://u6sg5krlmcie"
 
 [node name="TileMap" type="TileMap" parent="." unique_id=721291934]
 tile_set = SubResource("TileSet_dqw1c")
@@ -1684,7 +1685,7 @@ layer_0/tile_data = PackedInt32Array(1179723, 262144, 20, 1245259, 262144, 21, 1
 position = Vector2(-2040, -1320)
 
 [node name="Player" parent="." unique_id=1904947197 instance=ExtResource("1_npmc0")]
-position = Vector2(-1432, 464)
+position = Vector2(1124, 450)
 
 [node name="ToCaves" type="Area2D" parent="." unique_id=1073714406]
 script = ExtResource("7_3m33n")
