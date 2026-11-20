@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://varkw3lib7fd" path="res://Assets/Area1/ch_02_world_building_foundations/forgotten_forest_example_tileset.png" id="2_hm6m5"]
 [ext_resource type="Texture2D" uid="uid://c43c8d8m4a4l3" path="res://Assets/stone_gate.png" id="3_posty"]
 [ext_resource type="PackedScene" uid="uid://lwrimac50inn" path="res://Scripts/doorto_village.tscn" id="5_posty"]
-[ext_resource type="PackedScene" uid="uid://mbsgl1ntvjo" path="res://Enemy/Demonboss.tscn" id="6_a31ev"]
+[ext_resource type="PackedScene" uid="uid://cp1lepnp4ktjr" path="res://NPC/demon_boss_npc.tscn" id="6_a31ev"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a31ev"]
 texture = ExtResource("2_hm6m5")
@@ -3149,7 +3149,7 @@ position = Vector2(264, 544)
 sprite_frames = SubResource("SpriteFrames_dqw1c")
 
 [node name="Player" parent="." unique_id=1904947197 instance=ExtResource("1_7bq28")]
-position = Vector2(3536, 416)
+position = Vector2(3216, 434)
 
 [node name="Torch" parent="." unique_id=206959182 instance=ExtResource("2_8u27r")]
 position = Vector2(904, 600)
@@ -3181,5 +3181,5 @@ position = Vector2(2608, 600)
 [node name="Torch6" parent="." unique_id=1473028847 instance=ExtResource("2_8u27r")]
 position = Vector2(2752, 536)
 
-[node name="DemonBoss" parent="." unique_id=408506863 instance=ExtResource("6_a31ev")]
-position = Vector2(3458, 408)
+[node name="BossWatching" parent="." unique_id=2080522402 instance=ExtResource("6_a31ev")]
+position = Vector2(3624, 402)

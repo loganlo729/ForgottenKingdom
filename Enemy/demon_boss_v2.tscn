@@ -369,23 +369,24 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bl8mu"]
-size = Vector2(77, 89)
+size = Vector2(120, 115)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6gnt7"]
-size = Vector2(55, 65)
+size = Vector2(74.5, 79)
 
 [node name="DemonBossV2" type="CharacterBody2D" unique_id=606269949]
-collision_layer = 16
+collision_layer = 19
 collision_mask = 8
 script = ExtResource("1_rx70j")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1558282431]
-position = Vector2(-1, -36)
+position = Vector2(0, -64)
+scale = Vector2(1.61, 1.61)
 sprite_frames = SubResource("SpriteFrames_br2c3")
 animation = &"windup"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1396525044]
-position = Vector2(-1.5, -1.5)
+position = Vector2(2, 5.5)
 shape = SubResource("RectangleShape2D_bl8mu")
 
 [node name="AttackArea" type="Area2D" parent="." unique_id=1253489893]
@@ -393,10 +394,11 @@ collision_layer = 0
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" unique_id=583037440]
-position = Vector2(0, -1.5)
+position = Vector2(1, 13)
 shape = SubResource("RectangleShape2D_6gnt7")
 
 [node name="HealthBar" type="ProgressBar" parent="." unique_id=1469701047]
+visible = false
 offset_left = -84.0
 offset_top = -90.0
 offset_right = 86.0

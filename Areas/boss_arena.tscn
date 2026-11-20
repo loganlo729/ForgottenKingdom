@@ -4,24 +4,12 @@
 [ext_resource type="Script" uid="uid://dqq136f1bfmtd" path="res://Areas/boss_ground.gd" id="1_i1f5r"]
 [ext_resource type="PackedScene" uid="uid://dkxv0w0p8vm6x" path="res://Player/Player.tscn" id="2_b3pw4"]
 [ext_resource type="PackedScene" uid="uid://c1leagcb8eql6" path="res://Enemy/demon_boss_v2.tscn" id="3_qa152"]
-[ext_resource type="Texture2D" uid="uid://bwsgmv138y6hv" path="res://Assets/hell/hell_background.png" id="4_08alu"]
 [ext_resource type="Texture2D" uid="uid://d1egr71jch3b5" path="res://Assets/hell/hell_floor.png" id="5_7t6k5"]
-[ext_resource type="Script" uid="uid://br8w2p51sgj5w" path="res://Areas/out_of_bounds_death.gd" id="6_i1f5r"]
-[ext_resource type="Texture2D" uid="uid://88m7s8at2o63" path="res://Assets/hell/hell_wall.png" id="8_qa152"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_bl8mu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bl8mu"]
 size = Vector2(591.5, 58.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nsbrg"]
-size = Vector2(1858.5, 307.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6gnt7"]
-size = Vector2(306, 651)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_b1e5i"]
-size = Vector2(307, 743)
 
 [node name="BossArena" type="Node2D" unique_id=1038139850]
 
@@ -44,48 +32,24 @@ collision_mask = 15
 [node name="DemonBossV2" parent="." unique_id=606269949 instance=ExtResource("3_qa152")]
 position = Vector2(326, -54)
 
-[node name="HellBackground" type="Sprite2D" parent="." unique_id=346874947]
-z_index = -1
-position = Vector2(289.00003, -126.000015)
-scale = Vector2(1.091956, 1.0601852)
-texture = ExtResource("4_08alu")
-
 [node name="HellFloor" type="Sprite2D" parent="." unique_id=1852265378]
 position = Vector2(295, 30)
 scale = Vector2(0.7468514, 0.7837838)
 texture = ExtResource("5_7t6k5")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=390628874]
-script = ExtResource("6_i1f5r")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1654561487]
-position = Vector2(289, 221)
-shape = SubResource("RectangleShape2D_nsbrg")
+collision_layer = 15
+collision_mask = 15
 
 [node name="Area2D2" type="Area2D" parent="." unique_id=1650796684]
-script = ExtResource("6_i1f5r")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2" unique_id=2093291855]
-position = Vector2(-157, -219)
-shape = SubResource("RectangleShape2D_6gnt7")
+collision_layer = 8
+collision_mask = 0
 
 [node name="Area2D3" type="Area2D" parent="." unique_id=1461162921]
-script = ExtResource("6_i1f5r")
+collision_layer = 8
+collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D3" unique_id=997375622]
-position = Vector2(735.5, -265)
-shape = SubResource("RectangleShape2D_b1e5i")
-
-[node name="HellWall" type="Sprite2D" parent="Area2D3" unique_id=1872241484]
-position = Vector2(-162, -193)
-scale = Vector2(1.1312293, 1.4763975)
-skew = -0.02443461
-texture = ExtResource("8_qa152")
-
-[node name="HellWall2" type="Sprite2D" parent="Area2D3" unique_id=2112019363]
-position = Vector2(704, -208)
-scale = Vector2(0.78322816, 1.4501662)
-skew = 0.017453292
-texture = ExtResource("8_qa152")
+[node name="Camera2D" type="Camera2D" parent="." unique_id=265297991]
+offset = Vector2(260, 0)
 
 [editable path="Player"]

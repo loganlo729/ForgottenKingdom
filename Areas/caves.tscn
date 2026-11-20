@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bolgtjw6ucmdr" path="res://UI/ui_layer.tscn" id="1_3did2"]
 [ext_resource type="Script" uid="uid://c2kgb28wbkqq1" path="res://Areas/caves.gd" id="1_n2ijp"]
-[ext_resource type="PackedScene" uid="uid://dkxv0w0p8vm6x" path="res://Player/player.tscn" id="1_orut4"]
+[ext_resource type="PackedScene" uid="uid://dkxv0w0p8vm6x" path="res://Player/Player.tscn" id="1_orut4"]
 [ext_resource type="Texture2D" uid="uid://varkw3lib7fd" path="res://Assets/Area1/ch_02_world_building_foundations/forgotten_forest_example_tileset.png" id="5_n2ijp"]
 [ext_resource type="Script" uid="uid://cyinjawt5h52h" path="res://Scripts/to_deep_cave.gd" id="6_1sdc7"]
 [ext_resource type="Texture2D" uid="uid://1ftkv0pb1mpt" path="res://Assets/Cave Free/Demo/Tiles.png" id="6_trsk6"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://6a3vbrpyab6h" path="res://Enemy/boar.tscn" id="8_hcvdq"]
 [ext_resource type="PackedScene" uid="uid://bml3uqy6lo5ew" path="res://Player/UpgradePickup.tscn" id="10_hcvdq"]
 [ext_resource type="Texture2D" uid="uid://67xbmewqx20r" path="res://Assets/Torch/Torch_Sheet.png" id="11_qptgo"]
+[ext_resource type="PackedScene" uid="uid://dnrxnhkiur44o" path="res://Enemy/boar_boss.tscn" id="12_gkmc7"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3did2"]
 
@@ -1748,7 +1749,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="Player" parent="." unique_id=1904947197 instance=ExtResource("1_orut4")]
-position = Vector2(65, 162)
+position = Vector2(106, 176)
 
 [node name="TileMap" type="TileMap" parent="." unique_id=17917262]
 tile_set = SubResource("TileSet_dqw1c")
@@ -1803,9 +1804,6 @@ position = Vector2(1885, 1619)
 [node name="Boar2" parent="." unique_id=1519041346 instance=ExtResource("8_hcvdq")]
 position = Vector2(1040, 1696)
 
-[node name="Boar3" parent="." unique_id=1252877583 instance=ExtResource("8_hcvdq")]
-position = Vector2(2822, 1888)
-
 [node name="Boar4" parent="." unique_id=806281960 instance=ExtResource("8_hcvdq")]
 position = Vector2(910, 3211)
 
@@ -1831,5 +1829,29 @@ position = Vector2(-2, 3)
 scale = Vector2(3.125, 2.828125)
 energy = 1.9
 texture = SubResource("GradientTexture2D_bl8mu")
+
+[node name="BoarBoss" parent="." unique_id=457366033 instance=ExtResource("12_gkmc7")]
+position = Vector2(3151, 3038)
+
+[node name="Boar3" parent="." unique_id=797482518 instance=ExtResource("8_hcvdq")]
+position = Vector2(2873, 1887)
+
+[node name="Boar5" parent="." unique_id=1632894836 instance=ExtResource("8_hcvdq")]
+position = Vector2(2872, 1854)
+
+[node name="Boar6" parent="." unique_id=582159048 instance=ExtResource("8_hcvdq")]
+position = Vector2(2875, 1819)
+
+[node name="Boar7" parent="." unique_id=1160740347 instance=ExtResource("8_hcvdq")]
+position = Vector2(2876, 1785)
+
+[node name="Boar8" parent="." unique_id=825039954 instance=ExtResource("8_hcvdq")]
+position = Vector2(2874, 1749)
+
+[node name="Boar9" parent="." unique_id=329995840 instance=ExtResource("8_hcvdq")]
+position = Vector2(2875, 1716)
+
+[node name="Boar10" parent="." unique_id=1176663506 instance=ExtResource("8_hcvdq")]
+position = Vector2(2874, 1683)
 
 [editable path="UpgradePickup"]

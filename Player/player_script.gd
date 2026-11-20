@@ -31,6 +31,8 @@ const FINISHER_LUNGE_SPEED = 350.0
 
 # RANGED
 const RANGED_ATTACK_DURATION = 0.10
+const RANGED_ATTACK_COOLDOWN = 0.6
+const RANGED_ATTACK_DAMAGE = 1
 
 # JUMP UPGRADES
 const BASE_JUMPS = 1
@@ -42,7 +44,7 @@ const LONG_SWORD_RANGE = 1.5
 
 # GUARD / PERFECT PARRY
 const GUARD_DURATION = 0.3
-const GUARD_COOLDOWN = 0.5
+const GUARD_COOLDOWN = 0.2
 const PARRY_WINDOW = 0.18
 const PARRY_FEEDBACK_DURATION = 0.25
 
@@ -79,6 +81,8 @@ var melee_hit_targets: Array[Node2D] = []
 # RANGED VARIABLES
 var is_ranged_attacking = false
 var ranged_attack_time_left = 0.0
+var ranged_cooldown_left = 0.0
+var ranged_hit_targets: Array[Node2D] = []
 
 # JUMP VARIABLES
 var jumps_left = 0
@@ -98,6 +102,7 @@ var parry_feedback_left: float = 0.0
 func _ready() -> void:
 	# Allow the sword to detect bosses on collision layer 5.
 	attack_box.set_collision_mask_value(5, true)
+	ranged_attack_box.set_collision_mask_value(5, true)
 	
 	jumps_left = get_max_jumps()
 
@@ -126,6 +131,13 @@ func _ready() -> void:
 	):
 		attack_box.body_entered.connect(
 			_on_attack_box_body_entered
+		)
+
+	if not ranged_attack_box.body_entered.is_connected(
+		_on_ranged_attack_box_body_entered
+	):
+		ranged_attack_box.body_entered.connect(
+			_on_ranged_attack_box_body_entered
 		)
 
 	attack_box.monitoring = false
@@ -194,6 +206,28 @@ func try_melee_hit(body: Node2D) -> void:
 
 		var damage_to_deal = 2 if combo_count == 3 else 1
 		body.take_damage(damage_to_deal, knockback_direction)
+
+
+# --------------------------------
+# RANGED DAMAGE
+# --------------------------------
+
+func _on_ranged_attack_box_body_entered(body: Node2D) -> void:
+	try_ranged_hit(body)
+
+
+func try_ranged_hit(body: Node2D) -> void:
+	if not is_ranged_attacking or body in ranged_hit_targets:
+		return
+
+	if body.is_in_group("Enemies") and body.has_method("take_damage"):
+		ranged_hit_targets.append(body)
+
+		var knockback_direction = (
+			Vector2.LEFT if sprite.flip_h else Vector2.RIGHT
+		)
+
+		body.take_damage(RANGED_ATTACK_DAMAGE, knockback_direction)
 
 
 # --------------------------------
@@ -284,7 +318,9 @@ func _physics_process(delta: float) -> void:
 			attack_box.monitoring = false
 			combo_time_left = COMBO_WINDOW
 
-	# RANGED TIMER
+	# RANGED TIMER / COOLDOWN
+	ranged_cooldown_left = max(ranged_cooldown_left - delta, 0.0)
+
 	if is_ranged_attacking:
 		ranged_attack_time_left -= delta
 
@@ -484,10 +520,13 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("ranged_attack") \
 	and not is_dashing \
 	and not is_attacking \
-	and not is_ranged_attacking:
+	and not is_ranged_attacking \
+	and ranged_cooldown_left <= 0.0:
 
 		is_ranged_attacking = true
 		ranged_attack_time_left = RANGED_ATTACK_DURATION
+		ranged_cooldown_left = RANGED_ATTACK_COOLDOWN
+		ranged_hit_targets.clear()
 		ranged_attack_box.monitoring = true
 
 	# --------------------------------
@@ -576,6 +615,12 @@ func _physics_process(delta: float) -> void:
 	if is_attacking:
 		for body in attack_box.get_overlapping_bodies():
 			try_melee_hit(body)
+
+	# Ranged hits use the same detection and damage pattern as melee.
+	# This also detects enemies already inside the ranged hitbox.
+	if is_ranged_attacking:
+		for body in ranged_attack_box.get_overlapping_bodies():
+			try_ranged_hit(body)
 
 
 # --------------------------------

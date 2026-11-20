@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://cp1lepnp4ktjr"]
+
+[ext_resource type="Script" uid="uid://ca73l8a7ay5ik" path="res://Scripts/demon_boss_npc.gd" id="1_i0xww"]
+[ext_resource type="Texture2D" uid="uid://cxxea4uya67dl" path="res://Assets/boss_demon_slime_FREE_v1.0/spritesheets/demon_slime_FREE_v1.0_288x160_spritesheet.png" id="2_2j1is"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bl8mu"]
+size = Vector2(82.033905, 234.81577)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6nx6f"]
+atlas = ExtResource("2_2j1is")
+region = Rect2(0, 0, 288, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gcdsq"]
+atlas = ExtResource("2_2j1is")
+region = Rect2(288, 0, 288, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nt2ur"]
+atlas = ExtResource("2_2j1is")
+region = Rect2(576, 0, 288, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cwvsu"]
+atlas = ExtResource("2_2j1is")
+region = Rect2(864, 0, 288, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u4y3i"]
+atlas = ExtResource("2_2j1is")
+region = Rect2(1152, 0, 288, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_metei"]
+atlas = ExtResource("2_2j1is")
+region = Rect2(1440, 0, 288, 160)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bl8mu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6nx6f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gcdsq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nt2ur")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cwvsu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u4y3i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_metei")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 3.0
+}]
+
+[node name="BossWatching" type="Node2D" unique_id=2080522402]
+script = ExtResource("1_i0xww")
+final_boss_level = "uid://u6sg5krlmcie"
+
+[node name="TeleportBox" type="Area2D" parent="." unique_id=1540619956]
+position = Vector2(-101, -63.000004)
+scale = Vector2(1.205, 1.205)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TeleportBox" unique_id=1626104009]
+position = Vector2(-93.93474, -26.990429)
+scale = Vector2(1, 1.0000001)
+shape = SubResource("RectangleShape2D_bl8mu")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1774385846]
+position = Vector2(-10.000002, -48.99997)
+scale = Vector2(1.205, 1.205)
+skew = -0.13439035
+sprite_frames = SubResource("SpriteFrames_bl8mu")

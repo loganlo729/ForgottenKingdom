@@ -6,29 +6,45 @@
 [ext_resource type="Texture2D" uid="uid://c6i5rxomec6ag" path="res://Assets/Area1/Legacy-Fantasy_-_High_Forest_2.0/Legacy-Fantasy - High Forest 2.3/Mob/Boar/Walk/Walk-Base-Sheet.png" id="3_nu06q"]
 [ext_resource type="Texture2D" uid="uid://d3asmfcmjc3gn" path="res://Assets/Area1/Legacy-Fantasy_-_High_Forest_2.0/Legacy-Fantasy - High Forest 2.3/Mob/Boar/Hit-Vanish/Hit-Sheet.png" id="4_pgaqa"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_enuua"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_oheof"]
 atlas = ExtResource("1_45p8d")
 region = Rect2(0, 0, 48, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6ahyj"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_nu06q"]
 atlas = ExtResource("1_45p8d")
 region = Rect2(48, 0, 48, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_y6d8b"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_pgaqa"]
 atlas = ExtResource("1_45p8d")
 region = Rect2(96, 0, 48, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_tagl5"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_enuua"]
 atlas = ExtResource("1_45p8d")
 region = Rect2(144, 0, 48, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qdyb6"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ahyj"]
 atlas = ExtResource("1_45p8d")
 region = Rect2(192, 0, 48, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lo5g4"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_y6d8b"]
 atlas = ExtResource("1_45p8d")
 region = Rect2(240, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tagl5"]
+atlas = ExtResource("4_pgaqa")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qdyb6"]
+atlas = ExtResource("4_pgaqa")
+region = Rect2(48, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lo5g4"]
+atlas = ExtResource("4_pgaqa")
+region = Rect2(96, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vfgf0"]
+atlas = ExtResource("4_pgaqa")
+region = Rect2(144, 0, 48, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7kcss"]
 atlas = ExtResource("2_oheof")
@@ -90,6 +106,15 @@ region = Rect2(144, 0, 48, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_oheof")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nu06q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pgaqa")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_enuua")
 }, {
 "duration": 1.0,
@@ -97,7 +122,12 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_y6d8b")
+}],
+"loop": 1,
+"name": &"charge",
+"speed": 5.0
 }, {
+"frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_tagl5")
 }, {
@@ -106,10 +136,13 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_lo5g4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vfgf0")
 }],
 "loop": 1,
-"name": &"charge",
-"speed": 5.0
+"name": &"hurt",
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -185,7 +218,7 @@ target_position = Vector2(-100, 0)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=797847751]
 sprite_frames = SubResource("SpriteFrames_4s58p")
-animation = &"windup"
+animation = &"hurt"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1963942435]
 position = Vector2(0.25, 1)

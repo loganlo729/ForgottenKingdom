@@ -604,11 +604,11 @@ monitoring = false
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BaseAttackBox" unique_id=1302927926]
-position = Vector2(22, 0)
+position = Vector2(20.91, -3.035)
+scale = Vector2(1.115, 1.17)
 shape = SubResource("RectangleShape2D_bl8mu")
 
 [node name="RangedAttackBox" type="Area2D" parent="." unique_id=1721806045]
-collision_layer = 0
 collision_mask = 3
 monitoring = false
 monitorable = false
@@ -619,15 +619,14 @@ scale = Vector2(6.475, 1)
 shape = SubResource("RectangleShape2D_bl8mu")
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=264930097]
-position = Vector2(72, -17)
+position = Vector2(18.999992, -24.750038)
 scale = Vector2(3.0937498, 2.5703113)
 color = Color(1, 1, 0.44313726, 0.19215687)
 energy = 5.27
 texture = SubResource("GradientTexture2D_apopc")
 
 [node name="TorchSprite" type="AnimatedSprite2D" parent="." unique_id=873676638]
-visible = false
-position = Vector2(65, -22)
+position = Vector2(12, -29.750036)
 rotation = 0.15707964
 scale = Vector2(0.71875, 0.71875)
 skew = 0.0715585
